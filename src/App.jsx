@@ -52,11 +52,11 @@ const GRADS = [
 ]
 
 const BOT_RESPONSES_EN = {
-  welcome: 'Hello! I am EmbrioBot — virtual assistant of Embrio Maternity Clinic. How can I help you today? Choose a topic or write to us:'
+  welcome: 'Hello! I am EmbrioBot — AI assistant of Embrio Maternity Clinic. Click "Start" or write your question below:'
 };
 
 const BOT_RESPONSES = {
-  welcome: 'გამარჯობა! მე ვარ EmbrioBot — სამშობიარო კლინიკა „ემბრიოს“ ციფრული ასისტენტი. რით შემიძლია დაგეხმაროთ დღეს? აირჩიეთ კითხვა ან მოგვწერეთ:'
+  welcome: 'გამარჯობა! მე ვარ EmbrioBot — სამშობიარო კლინიკა „ემბრიოს“ AI ასისტენტი. დააჭირეთ „დაწყებას“ ან მოგვწერეთ შეკითხვა:'
 }
 
 const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -2018,19 +2018,19 @@ export default function App() {
               <div ref={chatEndRef} />
             </div>
 
-            <div className="chat-quick-actions">
-              <div className="chat-quick-btns">
-                <button onClick={() => handleBotQuery(lang === 'ka' ? 'სერვისები' : 'Services')} className="chat-quick-btn">
-                  {lang === 'ka' ? 'სერვისები' : 'Services'}
-                </button>
-                <button onClick={() => handleBotQuery(lang === 'ka' ? 'ფასები' : 'Prices')} className="chat-quick-btn">
-                  {lang === 'ka' ? 'ფასები' : 'Prices'}
-                </button>
-                <button onClick={() => handleBotQuery(lang === 'ka' ? 'მისამართი' : 'Address')} className="chat-quick-btn">
-                  {lang === 'ka' ? 'მისამართი' : 'Address'}
-                </button>
+            {messages.length === 1 && !isBotTyping && (
+              <div className="chat-quick-actions">
+                <div className="chat-quick-btns" style={{ justifyContent: 'center' }}>
+                  <button
+                    onClick={() => handleBotQuery(lang === 'ka' ? 'გამარჯობა' : 'Hello')}
+                    className="chat-quick-btn"
+                    style={{ width: '100%', padding: '9px 16px', fontWeight: 700, fontSize: '0.84rem' }}
+                  >
+                    {lang === 'ka' ? '✦ დაწყება' : '✦ Start Chat'}
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
 
             <form onSubmit={handleCustomMessageSubmit} className="chat-input-form">
               <input 
