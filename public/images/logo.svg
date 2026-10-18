@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="embrioGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFDFD9" />
+      <stop offset="45%" stop-color="#E08A79" />
+      <stop offset="100%" stop-color="#9E4D3E" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#embrioGrad)" />
+  <path d="M32 48C32 48 16 37.8 16 25.5C16 19.7 20.5 15 26.2 15C29.4 15 32 16.8 32 19.2C32 16.8 34.6 15 37.8 15C43.5 15 48 19.7 48 25.5C48 37.8 32 48 32 48Z" fill="white" fill-opacity="0.92"/>
+  <circle cx="32" cy="26.5" r="4.2" fill="#E08A79" />
+  <path d="M25.5 34.5C27.2 31.5 30.2 31 32 31C33.8 31 36.8 31.5 38.5 34.5" stroke="#E08A79" stroke-width="2.6" stroke-linecap="round" />
+</svg>
