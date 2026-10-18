@@ -982,7 +982,7 @@ export default function App() {
                 </span>
 
                 <h1 className="hero-cover-title">
-                  {lang === 'ka' ? 'ახალი სიცოცხლის დაბადება სანდო ხელში!' : 'Where New Life Begins in Safe Hands!'}
+                  {lang === 'ka' ? 'სადაც ახალი სიცოცხლე ზრუნვითა და სიყვარულით იწყება' : 'Where New Life Begins with Care and Love'}
                 </h1>
 
                 <p className="hero-cover-subtitle">
