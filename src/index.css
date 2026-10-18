@@ -2989,25 +2989,269 @@ footer .brand {
 
 @media (max-width: 900px) {
   .hero-cover-banner {
-    aspect-ratio: 16 / 10;
-    min-height: 300px;
+    aspect-ratio: 16 / 9.2;
+    min-height: 250px;
     max-height: none;
     padding: 20px;
     align-items: flex-end;
-    background-position: 70% center;
+    background-position: center center;
+  }
+  .hero-cover-banner::before {
+    background: linear-gradient(
+      90deg,
+      rgba(18, 32, 31, 0.62) 0%,
+      rgba(18, 32, 31, 0.34) 52%,
+      rgba(18, 32, 31, 0.08) 100%
+    );
+  }
+  .hero-cover-content-panel {
+    max-width: 72%;
+  }
+}
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE PHONE OPTIMIZATION (<= 768px & <= 480px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .wrap {
+    width: 92vw !important;
+  }
+
+  .block {
+    padding: 22px 0 !important;
+  }
+
+  /* Header & Brand on Phone */
+  header .nav {
+    height: 62px !important;
+  }
+  .brand {
+    gap: 8px !important;
+    font-size: 1.05rem !important;
+  }
+  .brand img {
+    width: 28px !important;
+    height: 35px !important;
+  }
+  .nav-links.open {
+    top: 62px !important;
+  }
+
+  /* Hero Cover on Phone: Proportional, full cover visible, compact text & buttons */
+  #dashboard .phone-onboarding-card {
+    max-width: 100% !important;
+    padding: 8px !important;
+    border-radius: 22px !important;
+  }
+  .hero-cover-banner {
+    aspect-ratio: 16 / 9.6 !important;
+    min-height: 215px !important;
+    max-height: 270px !important;
+    padding: 14px 16px !important;
+    border-radius: 16px !important;
+    align-items: flex-end !important;
+    background-position: center center !important;
   }
   .hero-cover-banner::before {
     background: linear-gradient(
       180deg,
-      rgba(18, 32, 31, 0.05) 0%,
-      rgba(18, 32, 31, 0.55) 65%,
+      rgba(18, 32, 31, 0.08) 0%,
+      rgba(18, 32, 31, 0.48) 55%,
       rgba(18, 32, 31, 0.72) 100%
-    );
+    ) !important;
   }
   .hero-cover-content-panel {
-    max-width: 100%;
+    max-width: 100% !important;
+  }
+  .hero-cover-eyebrow {
+    font-size: 0.62rem !important;
+    margin-bottom: 4px !important;
+    letter-spacing: 0.06em !important;
+  }
+  .hero-cover-title {
+    font-size: clamp(1.12rem, 4.6vw, 1.38rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 6px !important;
+  }
+  .hero-cover-subtitle {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 11px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  .hero-cover-actions {
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+  }
+  .hero-cover-actions .phone-onboarding-btn,
+  .hero-cover-actions .phone-onboarding-btn-secondary {
+    padding: 8px 13px !important;
+    font-size: 0.74rem !important;
+    gap: 5px !important;
+    white-space: nowrap !important;
+  }
+
+  /* Services Section on Phone */
+  .head h2 {
+    font-size: 1.35rem !important;
+    line-height: 1.25 !important;
+  }
+  .head p {
+    font-size: 0.82rem !important;
+  }
+  .services-nav-pills {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 8px !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 16px !important;
+  }
+  .services-nav-pills::-webkit-scrollbar {
+    display: none !important;
+  }
+  .service-pill {
+    flex: 0 0 auto !important;
+    padding: 7px 14px !important;
+    font-size: 0.76rem !important;
+  }
+  .services-row-three,
+  .services-row-two {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    margin-bottom: 16px !important;
+  }
+  .feature-card {
+    border-radius: 24px !important;
+    padding: 12px !important;
+  }
+  .card-image-wrapper {
+    height: 175px !important;
+    border-radius: 18px !important;
+    margin-bottom: 12px !important;
+  }
+  .card-floating-badge {
+    padding: 6px 12px !important;
+    border-radius: 14px !important;
+  }
+  .card-floating-badge strong {
+    font-size: 0.88rem !important;
+  }
+  .card-floating-badge small {
+    font-size: 0.62rem !important;
+  }
+  .card-body-content {
+    padding: 4px 8px 10px 8px !important;
+  }
+  .card-title {
+    font-size: 1.08rem !important;
+  }
+  .card-desc {
+    font-size: 0.82rem !important;
+  }
+
+  /* Team Modal vertical scrolling on Phone */
+  .modal-card .doctor-app-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    gap: 10px !important;
+  }
+  .modal-card .doctor-app-card {
+    max-width: 100% !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+
+  /* Contact Strip & Unified Footer on Phone */
+  .cstrip {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .citem {
+    padding: 12px 14px !important;
+  }
+  .citem .val {
+    font-size: 0.84rem !important;
+    word-break: break-word !important;
+  }
+  .site-footer {
+    padding: 10px 0 48px 0 !important;
+  }
+  .unified-footer-card {
+    border-radius: 24px !important;
+    min-height: auto !important;
+  }
+  .footer-info-panel {
+    padding: 22px 18px !important;
+  }
+  .footer-brand-logo {
+    height: 38px !important;
+  }
+  .footer-brand-title {
+    font-size: 1.12rem !important;
+  }
+  .footer-summary-text {
+    font-size: 0.84rem !important;
+    margin-bottom: 16px !important;
+  }
+  .footer-details-list {
+    gap: 11px !important;
+    margin-bottom: 18px !important;
+  }
+  .footer-detail-row p {
+    font-size: 0.82rem !important;
+  }
+  .footer-bottom-actions {
+    gap: 10px !important;
+  }
+  .social-chip {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .btn-gmap {
+    padding: 8px 15px !important;
+    font-size: 0.78rem !important;
+  }
+  .footer-map-panel {
+    min-height: 260px !important;
+    height: 260px !important;
+  }
+  .bw-google-map {
+    min-height: 260px !important;
+    filter: grayscale(0%) brightness(1) contrast(1.02) !important;
+  }
+  .map-status-badge {
+    top: 12px !important;
+    right: 12px !important;
+    padding: 5px 12px !important;
+    font-size: 0.72rem !important;
+  }
+
+  /* Floating Chatbot on Phone */
+  .floating-container {
+    bottom: 16px !important;
+    right: 16px !important;
+    gap: 10px !important;
+  }
+  .chat-window {
+    width: calc(100vw - 32px) !important;
+    max-width: 340px !important;
+    height: min(440px, 72vh) !important;
+    padding: 14px !important;
+  }
+  .float-btn {
+    width: 48px !important;
+    height: 48px !important;
   }
 }
-
-
-

@@ -53,16 +53,16 @@ const GRADS = [
 
 const BOT_RESPONSES_EN = {
   welcome: 'Hello! I am EmbrioBot — virtual assistant of Embrio Maternity Clinic. How can I help you today? Choose a topic or write to us:',
-  services: 'At Embrio Maternity Clinic we offer full maternal & reproductive care: Physiological Delivery & Cesarean Section (24/7), Prenatal Care (State & VIP programs), Gynecology, Reproductology & Andrology, Neonatology (NICU), 4D Ultrasound, and Painless Epidural Anesthesia.',
-  prices: 'Physiological delivery starts from 1,200₾ (covered by State Universal Healthcare financing), Cesarean section from 1,650₾. Individual VIP and Lux maternity rooms are available. Obstetrician consultation is 70₾.',
-  contact: 'Embrio Maternity Clinic is located in Tbilisi, Digomi Medical Cluster, 2/6 Academician Lubliana St. Maternity & Emergency Block: 24/7 · Outpatient Clinic: Mon–Sat 09:30–18:00. Hotline: (032) 2 51 86 24.'
+  services: 'At Embrio Maternity Clinic we offer full maternal & reproductive care: Physiological Delivery & Cesarean Section (24/7), Prenatal Care, Gynecology, Reproductology & Andrology, Neonatology (NICU), 4D Ultrasound, and Painless Epidural Anesthesia.',
+  prices: 'Physiological delivery starts from 1,200₾, Cesarean section from 1,650₾. Obstetrician consultation is 70₾.',
+  contact: 'Embrio Maternity Clinic is located in Tbilisi, Digomi Medical Cluster, 2/6 Academician Lubliana St. Maternity & Emergency Block: 24/7 · Outpatient Clinic: Mon–Sat 09:30–18:00. Hotline: (032) 2 51 86 24 · Email: info@embrio.ge.'
 };
 
 const BOT_RESPONSES = {
   welcome: 'გამარჯობა! მე ვარ EmbrioBot — სამშობიარო კლინიკა „ემბრიოს“ ციფრული ასისტენტი. რით შემიძლია დაგეხმაროთ დღეს? აირჩიეთ კითხვა ან მოგვწერეთ:',
   services: 'სამშობიარო კლინიკა „ემბრიოში“ გთავაზობთ სრულ სამეანო-გინეკოლოგიურ და რეპროდუქტოლოგიურ მომსახურებას: ფიზიოლოგიური მშობიარობა და საკეისრო კვეთა (24/7), ორსულთა ანტენატალური პატრონაჟი, გინეკოლოგია, რეპროდუქტოლოგია და ანდროლოგია, ნეონატოლოგია, 4D ექოსკოპია და უმტკივნეულო ეპიდურული ანესთეზია.',
-  prices: 'კლინიკა „ემბრიო“ ჩართულია საყოველთაო ჯანდაცვის და ორსულთა პატრონაჟის სახელმწიფო პროგრამებში. ფიზიოლოგიური მშობიარობა — 1200₾-დან, საკეისრო კვეთა — 1650₾-დან (მოქმედებს სახელმწიფო დაფინანსება და კერძო დაზღვევა). მეან-გინეკოლოგის კონსულტაცია — 70₾.',
-  contact: 'კლინიკა „ემბრიო“ მდებარეობს თბილისში, დიღმის მასივში, აკადემიკოს ლუბლიანას ქ. №2/6 (№13/6). სამშობიარო და მიმღები ბლოკი მუშაობს 24/7 რეჟიმში · ამბულატორია: ორშ – შაბ: 09:30–18:00. ცხელი ხაზი: (032) 2 51 86 24.'
+  prices: 'ფიზიოლოგიური მშობიარობა — 1200₾-დან, საკეისრო კვეთა — 1650₾-დან. მეან-გინეკოლოგის კონსულტაცია — 70₾.',
+  contact: 'კლინიკა „ემბრიო“ მდებარეობს თბილისში, დიღმის მასივში, აკადემიკოს ლუბლიანას ქ. №2/6 (№13/6). სამშობიარო და მიმღები ბლოკი მუშაობს 24/7 რეჟიმში · ამბულატორია: ორშ – შაბ: 09:30–18:00. ცხელი ხაზი: (032) 2 51 86 24 · ელ-ფოსტა: info@embrio.ge.'
 }
 
 const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -73,11 +73,11 @@ const TIMES = ["09:30", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "1
 const SERVICES_DETAILS_EN = {
   obstetrics: {
     title: "Obstetrics & Delivery",
-    desc: "Safe, family-oriented physiological childbirth in individual delivery suites with 24/7 monitoring by experienced obstetricians, neonatologists, and midwives.",
+    desc: "Safe, family-oriented physiological childbirth with 24/7 monitoring by experienced obstetricians, neonatologists, and midwives.",
     subs: [
-      { title: "Individual Delivery Suites", text: "Modern LDR (Labor, Delivery, Recovery) rooms equipped with fetal monitors and ergonomic birthing beds." },
+      { title: "Modern Delivery Rooms", text: "Equipped with continuous fetal monitors and ergonomic birthing beds." },
       { title: "Partner-Assisted Childbirth", text: "Support from your partner or family member in a warm, calm, and private environment." },
-      { title: "Postpartum Care & VIP Wards", text: "Single, Two-bed, and Lux apartments with 24-hour nursing support and balanced maternal nutrition." }
+      { title: "24/7 Postpartum Care", text: "Comfortable postpartum rooms with 24-hour nursing support and balanced maternal nutrition." }
     ]
   },
   cesarean: {
@@ -163,11 +163,11 @@ const SERVICES_DETAILS_EN = {
 const SERVICES_DETAILS = {
   obstetrics: {
     title: "მეანობა და მშობიარობა",
-    desc: "უსაფრთხო, ოჯახზე ორიენტირებული ფიზიოლოგიური მშობიარობა ინდივიდუალურ სამშობიარო ბლოკებში 24/7 მონიტორინგით გამოცდილი მეან-გინეკოლოგების, ნეონატოლოგებისა და ბებიაქალების გუნდთან ერთად.",
+    desc: "უსაფრთხო, ოჯახზე ორიენტირებული ფიზიოლოგიური მშობიარობა 24/7 მონიტორინგით გამოცდილი მეან-გინეკოლოგების, ნეონატოლოგებისა და ბებიაქალების გუნდთან ერთად.",
     subs: [
-      { title: "ინდივიდუალური სამშობიარო ბლოკები", text: "თანამედროვე LDR ტიპის ბლოკები აღჭურვილია ფეტალური მონიტორებითა და ტრანსფორმირებადი სამშობიარო საწოლებით." },
+      { title: "თანამედროვე სამშობიარო გარემო", text: "სამშობიარო სივრცე აღჭურვილია ფეტალური მონიტორებითა და ტრანსფორმირებადი სამშობიარო საწოლებით." },
       { title: "პარტნიორული მშობიარობა", text: "მეუღლის ან ოჯახის წევრის დასწრება მშობიარობაზე მშვიდ, თბილ და კონფიდენციალურ გარემოში." },
-      { title: "მშობიარობის შემდგომი პალატები", text: "ერთადგილიანი, ორადგილიანი და VIP ლუქს პალატები 24-საათიანი სამედიცინო მოვლითა და სრულფასოვანი კვებით." }
+      { title: "მშობიარობის შემდგომი მოვლა", text: "კომფორტული პოსტნატალური პალატები 24-საათიანი სამედიცინო მოვლითა და სრულფასოვანი კვებით." }
     ]
   },
   cesarean: {
@@ -181,7 +181,7 @@ const SERVICES_DETAILS = {
   },
   prenatal: {
     title: "ორსულთა პატრონაჟი",
-    desc: "ორსულობის სრული სამედიცინო მეთვალყურეობა პირველივე კვირებიდან მშობიარობამდე — როგორც სახელმწიფო ანტენატალური პროგრამით (ვაუჩერით), ისე კლინიკის ინდივიდუალური პაკეტებით.",
+    desc: "ორსულობის სრული სამედიცინო მეთვალყურეობა პირველივე კვირებიდან მშობიარობამდე — ყველა ტრიმესტრის გეგმიური კვლევებითა და მონიტორინგით.",
     subs: [
       { title: "ტრიმესტრული ვიზიტები", text: "გეგმიური კონსულტაციები, ლაბორატორიული ანალიზები, გენეტიკური სკრინინგი და ნაყოფის ზრდის მონიტორინგი." },
       { title: "მაღალი რისკის ორსულობის მართვა", text: "ტყუპი ორსულობის, გესტაციური დიაბეტის, პრეეკლამფსიისა და რეზუს-კონფლიქტის სპეციალიზებული მეთვალყურეობა." },
@@ -264,7 +264,7 @@ const ENAMEL_DETAILS_EN = {
   coffee: {
     title: "Third Trimester & Delivery Prep (Weeks 28–40)",
     damage: "The baby actively gains weight and prepares for birth. Regular Cardiotocography (CTG) and Doppler ultrasound monitor fetal wellbeing and placental blood flow.",
-    tip: "At week 34–36, meet your personal obstetrician-gynecologist at Embrio Clinic, tour our individual delivery suites, and finalize your personalized birth plan."
+    tip: "At week 34–36, meet your personal obstetrician-gynecologist at Embrio Clinic and finalize your personalized birth plan."
   }
 };
 
@@ -272,7 +272,7 @@ const ENAMEL_DETAILS = {
   sweets: {
     title: "I ტრიმესტრი (1–12 კვირა)",
     damage: "პირველი 12 კვირის განმავლობაში ყალიბდება ნაყოფის ყველა სასიცოცხლო ორგანო. ამ ეტაპზე უმნიშვნელოვანესია ორსულობის დროული აღრიცხვა, პირველადი ლაბორატორიული კვლევები და 11–13 კვირის გენეტიკური ექოსკოპიური სკრინინგი.",
-    tip: "დარეგისტრირდით ორსულთა სახელმწიფო ანტენატალურ პროგრამაში კლინიკა „ემბრიოში“ 6–12 კვირის ვადაზე, მიიღეთ ექიმის მიერ დანიშნული ფოლიუმის მჟავა და მოერიდეთ თვითნებურ მედიკამენტებს."
+    tip: "დადგით ორსულობის ანტენატალურ აღრიცხვაზე კლინიკა „ემბრიოში“ 6–12 კვირის ვადაზე, მიიღეთ ექიმის მიერ დანიშნული ფოლიუმის მჟავა და მოერიდეთ თვითნებურ მედიკამენტებს."
   },
   smoking: {
     title: "II ტრიმესტრი (13–27 კვირა)",
@@ -282,7 +282,7 @@ const ENAMEL_DETAILS = {
   coffee: {
     title: "III ტრიმესტრი და მშობიარობის დაგეგმვა (28–40 კვირა)",
     damage: "ნაყოფი აქტიურად იმატებს წონაში და ემზადება დაბადებისთვის. ამ პერიოდში რეგულარულად ტარდება კარდიოტოკოგრაფია (CTG) და დოპლეროგრაფია დედა-პლაცენტა-ნაყოფის სისხლის მიმოქცევის შესაფასებლად.",
-    tip: "34–36 კვირაზე შეარჩიეთ პირადი მეან-გინეკოლოგი კლინიკა „ემბრიოში“, დაათვალიერეთ ინდივიდუალური სამშობიარო ბლოკები და VIP პალატები და შეადგინეთ თქვენი მშობიარობის ინდივიდუალური გეგმა."
+    tip: "34–36 კვირაზე შეარჩიეთ პირადი მეან-გინეკოლოგი კლინიკა „ემბრიოში“ და შეადგინეთ თქვენი მშობიარობის ინდივიდუალური გეგმა."
   }
 }
 
@@ -785,8 +785,9 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Auto-open chatbot with 1.4s delay
+  // Auto-open chatbot with 1.4s delay on desktop screens only (keep mobile unobstructed)
   useEffect(() => {
+    if (window.innerWidth <= 768) return
     const timer = setTimeout(() => {
       setShowChat(true)
       setChatUnread(0)
@@ -820,7 +821,7 @@ export default function App() {
       return dict[queryType];
     }
     const lower = text.toLowerCase();
-    if (lower.includes('ფას') || lower.includes('ღირ') || lower.includes('საყოველთაო') || lower.includes('price') || lower.includes('cost')) {
+    if (lower.includes('ფას') || lower.includes('ღირ') || lower.includes('price') || lower.includes('cost')) {
       return dict.prices;
     }
     if (lower.includes('მისამართ') || lower.includes('სად') || lower.includes('ტელეფონ') || lower.includes('ლუბლიან') || lower.includes('address') || lower.includes('phone') || lower.includes('where')) {
@@ -829,14 +830,9 @@ export default function App() {
     if (lower.includes('სერვის') || lower.includes('მშობიარ') || lower.includes('საკეისრო') || lower.includes('ექოსკოპ') || lower.includes('service') || lower.includes('delivery')) {
       return dict.services;
     }
-    if (lower.includes('პალატ') || lower.includes('vip') || lower.includes('room') || lower.includes('ward')) {
-      return lang === 'ka'
-        ? 'კლინიკა „ემბრიოში“ ფუნქციონირებს ინდივიდუალური სამშობიარო ბლოკები და სხვადასხვა კატეგორიის პოსტнатаლური პალატები: სტანდარტული (1 და 2-ადგილიანი), კომფორტი და VIP ლუქს აპარტამენტები (სადაც შესაძლებელია მეუღლის დარჩენაც). ყველა პალატა აღჭურვილია სველი წერტილით, კლიმატ-კონტროლითა და 3-ჯერადი ბალანსირებული კვებით.'
-        : 'Embrio Clinic offers individual LDR delivery suites and comfortable postpartum rooms: Standard (1 & 2-bed), Comfort, and VIP Lux apartments (with partner stay option), all featuring private bathrooms, climate control, and 3 daily meals.';
-    }
     return lang === 'ka'
-      ? 'გმადლობთ შეტყობინებისთვის! დეტალური კონსულტაციისა და ვიზიტის დასაჯავშნად შეგიძლიათ აირჩიოთ სასურველი დრო ჩვენს ონლაინ კალენდარში ან დაგვიკავშირდეთ 24/7 ცხელ ხაზზე: (032) 2 51 86 24.'
-      : 'Thank you for your message! To schedule a visit, please pick a convenient date and time in our online booking calendar below or call our 24/7 hotline: (032) 2 51 86 24.';
+      ? 'გმადლობთ შეტყობინებისთვის! დეტალური კონსულტაციისა და ვიზიტის დასაჯავშნად შეგიძლიათ აირჩიოთ სასურველი დრო ჩვენს ონლაინ კალენდარში ან დაგვიკავშირდეთ 24/7 ცხელ ხაზზე: (032) 2 51 86 24 · info@embrio.ge.'
+      : 'Thank you for your message! To schedule a visit, please pick a convenient date and time in our online booking calendar below or call our 24/7 hotline: (032) 2 51 86 24 · info@embrio.ge.';
   }
 
   const sendChatMessage = (userText, queryType = null) => {
@@ -998,8 +994,8 @@ export default function App() {
 
                 <p className="hero-cover-subtitle">
                   {lang === 'ka'
-                    ? 'ორსულობის დაგეგმვიდან უსაფრთხო, კომფორტულ მშობიარობამდე — ინდივიდუალური სამშობიარო ბლოკები, 24/7 ნეონატოლოგია და პროფესიონალი გუნდი.'
-                    : 'From pregnancy planning to safe, comfortable childbirth — individual delivery suites, 24/7 neonatal care, and an experienced medical team.'}
+                    ? 'ორსულობის დაგეგმვიდან უსაფრთხო, კომფორტულ მშობიარობამდე — 24/7 სამეანო-ნეონატოლოგიური მეთვალყურეობა და პროფესიონალი გუნდი.'
+                    : 'From pregnancy planning to safe, comfortable childbirth — 24/7 obstetric-neonatal care and an experienced medical team.'}
                 </p>
 
                 <div className="hero-cover-actions">
@@ -1011,18 +1007,6 @@ export default function App() {
                     <CalendarIcon className="w-4 h-4" />
                     <span>{lang === 'ka' ? 'დაჯავშნე ვიზიტი' : 'Book Visit'}</span>
                   </a>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      playClickSound();
-                      setShowPricesModal(true);
-                    }}
-                    className="phone-onboarding-btn-secondary"
-                  >
-                    <DollarSign className="w-4 h-4" style={{ color: 'var(--accent-color)' }} />
-                    <span>{lang === 'ka' ? 'ფასები' : 'Prices'}</span>
-                  </button>
 
                   <a
                     href="tel:+995322518624"
@@ -1083,11 +1067,11 @@ export default function App() {
                 badgeStrongKa: '24/7',
                 badgeStrongEn: '24/7',
                 badgeSmallKa: 'სამშობიარო ბლოკი',
-                badgeSmallEn: 'Delivery Suites',
+                badgeSmallEn: 'Maternity Care',
                 zoneKa: '01 · მეანობა და მშობიარობა',
                 zoneEn: '01 · Obstetrics & Delivery',
-                shortKa: 'ფიზიოლოგიური და პარტნიორული მშობიარობა ინდივიდუალურ LDR ბლოკებში 24/7 მონიტორინგით.',
-                shortEn: 'Physiological and partner-assisted childbirth in private LDR suites with 24/7 monitoring.'
+                shortKa: 'უსაფრთხო ფიზიოლოგიური და პარტნიორული მშობიარობა 24/7 სამედიცინო მონიტორინგით.',
+                shortEn: 'Safe physiological and partner-assisted childbirth with 24/7 monitoring.'
               },
               {
                 key: 'cesarean',
@@ -1106,14 +1090,14 @@ export default function App() {
                 key: 'prenatal',
                 featured: false,
                 image: `${import.meta.env.BASE_URL}images/prenatal-care.jpg`,
-                badgeStrongKa: '8 ვიზიტი',
-                badgeStrongEn: '8 Visits',
-                badgeSmallKa: 'სახელმწიფო ვაუჩერი',
-                badgeSmallEn: 'State Voucher',
+                badgeStrongKa: '3 ტრიმესტრი',
+                badgeStrongEn: '3 Trimesters',
+                badgeSmallKa: 'სრული მეთვალყურეობა',
+                badgeSmallEn: 'Full Supervision',
                 zoneKa: '03 · ორსულთა პატრონაჟი',
                 zoneEn: '03 · Prenatal Care',
                 shortKa: 'ორსულობის სრული ანტენატალური მეთვალყურეობა პირველივე კვირებიდან მშობიარობამდე.',
-                shortEn: 'Full antenatal pregnancy supervision across all three trimesters & state voucher program.'
+                shortEn: 'Full antenatal pregnancy supervision across all three trimesters.'
               },
               {
                 key: 'reproductology',
@@ -1527,8 +1511,8 @@ export default function App() {
               <div className="menu-hub-icon">
                 <Cpu className="w-5 h-5" />
               </div>
-              <h3>{lang === 'ka' ? 'პალატები & ბლოკები' : 'Wards & Equipment'}</h3>
-              <p>{lang === 'ka' ? 'VIP პალატები და 24/7 აპარატურა' : 'VIP rooms & 4D technology'}</p>
+              <h3>{lang === 'ka' ? 'აპარატურა' : 'Equipment'}</h3>
+              <p>{lang === 'ka' ? '24/7 სამეანო და 4D ტექნოლოგიები' : '24/7 maternity & 4D technology'}</p>
             </div>
 
             <div className="menu-hub-card" onClick={() => setShowResultsModal(true)}>
@@ -1543,7 +1527,7 @@ export default function App() {
               <div className="menu-hub-icon">
                 <DollarSign className="w-5 h-5" />
               </div>
-              <h3>{lang === 'ka' ? 'ფასები & ვაუჩერი' : 'Prices & Packages'}</h3>
+              <h3>{lang === 'ka' ? 'ფასები' : 'Prices'}</h3>
               <p>{lang === 'ka' ? 'მშობიარობისა და კვლევების ფასები' : 'Delivery & service price list'}</p>
             </div>
 
@@ -1588,7 +1572,7 @@ export default function App() {
                 </div>
                 <div className="enamel-card-content">
                   <h3>{lang === 'ka' ? 'I ტრიმესტრი (1–12 კვირა)' : 'First Trimester (Weeks 1–12)'}</h3>
-                  <p className={`enamel-desc ${expandedEnamel === 'sweets' ? 'expanded' : ''}`}>{lang === 'ka' ? 'ორსულობის დადასტურება, სახელმწიფო ანტენატალურ პროგრამაში აღრიცხვა და 11–13 კვირის გენეტიკური სკრინინგი.' : 'Pregnancy confirmation, state antenatal registration, and 11–13 week genetic ultrasound screening.'}</p>
+                  <p className={`enamel-desc ${expandedEnamel === 'sweets' ? 'expanded' : ''}`}>{lang === 'ka' ? 'ორსულობის დადასტურება, ანტენატალურ მეთვალყურეობაზე აღრიცხვა და 11–13 კვირის გენეტიკური სკრინინგი.' : 'Pregnancy confirmation, antenatal registration, and 11–13 week genetic ultrasound screening.'}</p>
                 </div>
               </div>
 
@@ -1634,7 +1618,7 @@ export default function App() {
                 />
               </div>
               <h3>{lang === 'ka' ? '24/7 სამეანო მზადყოფნა' : '24/7 Maternity Readiness'}</h3>
-              <p>{lang === 'ka' ? 'სამშობიარო კლინიკა „ემბრიო“ გთავაზობთ უწყვეტ მეთვალყურეობას, სახელმწიფო დაფინანსებასა და ინდივიდუალურ სამშობიარო ბლოკებს.' : 'Embrio Maternity Clinic offers continuous supervision, state healthcare coverage, and private delivery suites.'}</p>
+              <p>{lang === 'ka' ? 'სამშობიარო კლინიკა „ემბრიო“ გთავაზობთ 24/7 უწყვეტ მეთვალყურეობასა და გამოცდილ მეან-გინეკოლოგთა გუნდს.' : 'Embrio Maternity Clinic offers 24/7 continuous supervision and an experienced obstetric team.'}</p>
               <a href="#booking" className="btn btn-primary">{lang === 'ka' ? 'დაჯავშნე კონსულტაცია' : 'Book Consultation'}</a>
             </div>
           </div>
@@ -1822,11 +1806,11 @@ export default function App() {
               </div>
             </div>
 
-            <a className="citem" href="mailto:ltd.embrio@yahoo.com" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+            <a className="citem" href="mailto:info@embrio.ge" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
               <span className="ic"><Mail className="w-5 h-5" /></span>
               <div>
                 <div className="lab">{lang === 'ka' ? 'ელ. ფოსტა' : 'Email'}</div>
-                <div className="val">ltd.embrio@yahoo.com</div>
+                <div className="val">info@embrio.ge</div>
               </div>
             </a>
 
@@ -1877,8 +1861,8 @@ export default function App() {
 
                 <p className="footer-summary-text">
                   {lang === 'ka'
-                    ? 'სრული სამეანო-გინეკოლოგიური, რეპროდუქტოლოგიური და ნეონატოლოგიური მომსახურება 24/7 რეჟიმში — ინდივიდუალური სამშობიარო ბლოკები, სახელმწიფო დაფინანსება და VIP პალატები.'
-                    : 'Complete obstetric-gynecological, reproductive, and neonatal care 24/7 — individual delivery suites, state healthcare financing, and VIP postpartum wards.'}
+                    ? 'სრული სამეანო-გინეკოლოგიური, რეპროდუქტოლოგიური და ნეონატოლოგიური მომსახურება 24/7 რეჟიმში.'
+                    : 'Complete obstetric-gynecological, reproductive, and neonatal care 24/7.'}
                 </p>
 
                 <div className="footer-details-list">
@@ -1910,7 +1894,7 @@ export default function App() {
                     <span className="f-icon"><Mail className="w-4 h-4" /></span>
                     <div>
                       <strong>{lang === 'ka' ? 'ელ-ფოსტა:' : 'Email:'}</strong>
-                      <p><a href="mailto:ltd.embrio@yahoo.com">ltd.embrio@yahoo.com</a></p>
+                      <p><a href="mailto:info@embrio.ge">info@embrio.ge</a></p>
                     </div>
                   </div>
                 </div>
@@ -1954,10 +1938,10 @@ export default function App() {
                       <Phone className="w-4 h-4" />
                     </a>
                     <a
-                      href="mailto:ltd.embrio@yahoo.com"
+                      href="mailto:info@embrio.ge"
                       className="social-chip"
                       aria-label="Email"
-                      title="ltd.embrio@yahoo.com"
+                      title="info@embrio.ge"
                     >
                       <Mail className="w-4 h-4" />
                     </a>
@@ -2044,9 +2028,6 @@ export default function App() {
                 <button onClick={() => handleBotQuery('prices', lang === 'ka' ? 'მშობიარობის ფასები' : 'Delivery Prices')} className="chat-quick-btn">
                   {lang === 'ka' ? 'ფასები' : 'Prices'}
                 </button>
-                <button onClick={() => handleBotQuery(null, lang === 'ka' ? 'VIP პალატები' : 'VIP Rooms')} className="chat-quick-btn">
-                  {lang === 'ka' ? 'პალატები' : 'VIP Rooms'}
-                </button>
                 <button onClick={() => handleBotQuery('contact', lang === 'ka' ? 'მისამართი' : 'Address')} className="chat-quick-btn">
                   {lang === 'ka' ? 'მისამართი' : 'Address'}
                 </button>
@@ -2116,8 +2097,8 @@ export default function App() {
               </p>
               <p className="text-sm leading-relaxed mb-6">
                 {lang === 'ka'
-                  ? 'კლინიკაში დანერგილია მშობიარობისა და ნეონატალური მოვლის თანამედროვე საერთაშორისო სტანდარტები: ინდივიდუალური სამშობიარო ბლოკები, უსაფრთხო ეპიდურული გაუტკივარება, 3D/4D ექოსკოპიური დიაგნოსტიკა და ოჯახურ გარემოსთან მაქსიმალურად მიახლოებული VIP პალატები.'
-                  : 'We uphold modern international standards of maternal and neonatal care: individual delivery suites, safe painless epidural analgesia, 3D/4D ultrasound diagnostics, and cozy family-oriented VIP wards.'}
+                  ? 'კლინიკაში დანერგილია მშობიარობისა და ნეონატალური მოვლის თანამედროვე საერთაშორისო სტანდარტები: უსაფრთხო ეპიდურული გაუტკივარება, 3D/4D ექოსკოპიური დიაგნოსტიკა და 24/7 ინტენსიური მონიტორინგი.'
+                  : 'We uphold modern international standards of maternal and neonatal care: safe painless epidural analgesia, 3D/4D ultrasound diagnostics, and 24/7 clinical monitoring.'}
               </p>
               
               <div className="stats-grid-4">
@@ -2134,15 +2115,15 @@ export default function App() {
                   </div>
                 </div>
                 <div className="glass-neu p-4 text-center" style={{ boxShadow: 'inset 2px 2px 5px rgba(166,160,146,0.1)' }}>
-                  <div className="text-2xl font-bold font-serif" style={{ color: 'var(--accent-color)' }}>100%</div>
+                  <div className="text-2xl font-bold font-serif" style={{ color: 'var(--accent-color)' }}>3D/4D</div>
                   <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--app-text-soft)', textTransform: 'uppercase', marginTop: '4px' }}>
-                    {lang === 'ka' ? 'ინდივიდუალური ბლოკი' : 'Private Suites'}
+                    {lang === 'ka' ? 'ექოსკოპია' : 'Ultrasound'}
                   </div>
                 </div>
                 <div className="glass-neu p-4 text-center" style={{ boxShadow: 'inset 2px 2px 5px rgba(166,160,146,0.1)' }}>
-                  <div className="text-2xl font-bold font-serif" style={{ color: 'var(--accent-color)' }}>VIP</div>
+                  <div className="text-2xl font-bold font-serif" style={{ color: 'var(--accent-color)' }}>NICU</div>
                   <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--app-text-soft)', textTransform: 'uppercase', marginTop: '4px' }}>
-                    {lang === 'ka' ? 'საოჯახო პალატები' : 'Family Wards'}
+                    {lang === 'ka' ? 'ნეონატოლოგია' : 'Neonatal Care'}
                   </div>
                 </div>
               </div>
@@ -2310,7 +2291,7 @@ export default function App() {
 
                 <div className="glass-neu p-4" style={{ boxShadow: 'inset 2px 2px 5px rgba(166,160,146,0.05)' }}>
                   <h4 className="font-bold text-sm mb-1" style={{ color: 'var(--app-text-dark)' }}>
-                    {lang === 'ka' ? 'უმტკივნეულო პარტნიორული მშობიარობა ინდივიდუალურ ბლოკში' : 'Painless Partner-Assisted Birth in Private LDR Suite'}
+                    {lang === 'ka' ? 'უმტკივნეულო პარტნიორული მშობიარობა' : 'Painless Partner-Assisted Birth'}
                   </h4>
                   <p className="text-xs mb-2">
                     {lang === 'ka' ? 'ფიზიოლოგიური მშობიარობა ეპიდურული გაუტკივარებით და მეუღლის დასწრებით, მშვიდ და ოჯახურ გარემოში.' : 'Physiological delivery with walking epidural analgesia and partner support in a calm, homelike environment.'}
@@ -2352,13 +2333,13 @@ export default function App() {
             <div className="text-left" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
               <div style={{ paddingBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.5)', flexShrink: 0 }}>
                 <span style={{ fontSize: '10px', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--accent-color)', display: 'block', marginBottom: '4px' }}>
-                  ✦ {lang === 'ka' ? 'ფასების კატალოგი და დაფინანსება' : 'Price Catalog & Healthcare Coverage'}
+                  ✦ {lang === 'ka' ? 'ფასების კატალოგი' : 'Price Catalog'}
                 </span>
                 <h3 className="font-serif font-bold text-xl mb-1" style={{ color: 'var(--app-text-dark)' }}>
                   {lang === 'ka' ? 'კლინიკა „ემბრიოს“ სერვისების ფასები' : 'Embrio Clinic Service Prices'}
                 </h3>
                 <p className="text-xs">
-                  {lang === 'ka' ? 'კლინიკაში მოქმედებს საყოველთაო ჯანდაცვის სახელმწიფო დაფინანსება, ორსულთა ანტენატალური ვაუჩერი და კერძო სადაზღვევო პოლისები.' : 'State Universal Healthcare financing, Antenatal Vouchers, and private insurance policies are accepted.'}
+                  {lang === 'ka' ? 'სამეანო, გინეკოლოგიური, რადიოლოგიური და ლაბორატორიული სერვისების ტარიფები.' : 'Rates for obstetric, gynecological, radiological, and laboratory services.'}
                 </p>
               </div>
 
@@ -2366,7 +2347,6 @@ export default function App() {
               <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', padding: '12px 0', flexShrink: 0 }}>
                 {[
                   "მშობიარობა და საკეისრო",
-                  "პალატები და VIP ბლოკი",
                   "ორსულთა პატრონაჟი",
                   "ექოსკოპია და რადიოლოგია",
                   "გინეკოლოგია და რეპროდუქტოლოგია",
@@ -2402,20 +2382,14 @@ export default function App() {
                   const currentCatName = activePriceCategory || "მშობიარობა და საკეისრო";
                   const pricingData = {
                     "მშობიარობა და საკეისრო": [
-                      { n: "ფიზიოლოგიური მშობიარობა (საბაზისო პაკეტი)", p: "1200₾" },
-                      { n: "ფიზიოლოგიური მშობიარობა (სახელმწიფო დაფინანსებით)", p: "თანაგადახდით / 0₾-დან" },
+                      { n: "ფიზიოლოგიური მშობიარობა", p: "1200₾" },
                       { n: "გეგმიური / გადაუდებელი საკეისრო კვეთა", p: "1650₾ - 2100₾" },
                       { n: "ეპიდურული გაუტკივარება (ანესთეზია)", p: "250₾" },
                       { n: "პირადი მეან-გინეკოლოგის აყვანა", p: "350₾ - 500₾" }
                     ],
-                    "პალატები და VIP ბლოკი": [
-                      { n: "ორადგილიანი კომფორტ პალატა (კვებით)", p: "შედის პაკეტში" },
-                      { n: "ერთადგილიანი ინდივიდუალური პალატა", p: "+250₾ - 350₾" },
-                      { n: "VIP საოჯახო ლუქს პალატა (პარტნიორის განთავსებით)", p: "+550₾ - 750₾" }
-                    ],
                     "ორსულთა პატრონაჟი": [
-                      { n: "ორსულთა სახელმწიფო ანტენატალური პროგრამა (8 ვიზიტი)", p: "უფასო (ვაუჩერით)" },
                       { n: "მეან-გინეკოლოგის პირველადი კონსულტაცია", p: "70₾" },
+                      { n: "მეან-გინეკოლოგის განმეორებითი კონსულტაცია", p: "50₾" },
                       { n: "კარდიოტოკოგრაფია (CTG - ნაყოფის გულისცემის მონიტორინგი)", p: "45₾" }
                     ],
                     "ექოსკოპია და რადიოლოგია": [
@@ -2513,7 +2487,7 @@ export default function App() {
         </div>
       )}
 
-      {/* WARDS & EQUIPMENT MODAL OVERLAY */}
+      {/* EQUIPMENT MODAL OVERLAY */}
       {showEquipModal && (
         <div className="modal-overlay" onClick={() => setShowEquipModal(false)}>
           <div className="modal-card glass-neu" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '620px', width: '92%', maxHeight: '85vh', overflowY: 'auto' }}>
@@ -2530,22 +2504,13 @@ export default function App() {
                 ✦ {lang === 'ka' ? 'ინფრასტრუქტურა და აპარატურა' : 'Infrastructure & Equipment'}
               </span>
               <h3 className="font-serif font-bold text-xl mb-4" style={{ color: 'var(--app-text-dark)' }}>
-                {lang === 'ka' ? 'პალატები, სამშობიარო ბლოკები და ტექნოლოგიები' : 'Delivery Suites, VIP Wards & Medical Tech'}
+                {lang === 'ka' ? 'სამედიცინო აპარატურა და ტექნოლოგიები' : 'Medical Equipment & Technologies'}
               </h3>
               <p className="text-xs mb-6">
-                {lang === 'ka' ? 'კლინიკა „ემბრიო“ აღჭურვილია ევროპული და ამერიკული წარმოების სამეანო-ნეონატალური აპარატურითა და მაქსიმალურ კომფორტზე მორგებული პალატებით.' : 'Embrio Clinic is equipped with advanced European and American obstetric-neonatal technology and cozy patient suites.'}
+                {lang === 'ka' ? 'კლინიკა „ემბრიო“ აღჭურვილია ევროპული და ამერიკული წარმოების თანამედროვე სამეანო-ნეონატალური და დიაგნოსტიკური აპარატურით.' : 'Embrio Clinic is equipped with advanced European and American obstetric-neonatal and diagnostic technology.'}
               </p>
               
               <div className="flex flex-col gap-4">
-                <article className="glass-neu p-4" style={{ boxShadow: 'inset 2px 2px 5px rgba(166,160,146,0.05)' }}>
-                  <h4 className="font-bold text-sm mb-1" style={{ color: 'var(--app-text-dark)' }}>
-                    {lang === 'ka' ? 'ინდივიდუალური LDR სამშობიარო ბლოკები' : 'Individual LDR Delivery Suites'}
-                  </h4>
-                  <p className="text-xs mb-2">
-                    {lang === 'ka' ? 'თითოეული მშობიარე განთავსებულია იზოლირებულ, თანამედროვე სამშობიარო ბლოკში, რომელიც აღჭურვილია მრავალფუნქციური ტრანსფორმირებადი საწოლით, ფეტალური მონიტორითა და ახალშობილის სარეანიმაციო კუთხით.' : 'Private Labor-Delivery-Recovery suites featuring ergonomic birthing beds, continuous fetal telemetry, and neonatal warming stations.'}
-                  </p>
-                </article>
-
                 <article className="glass-neu p-4" style={{ boxShadow: 'inset 2px 2px 5px rgba(166,160,146,0.05)' }}>
                   <h4 className="font-bold text-sm mb-1" style={{ color: 'var(--app-text-dark)' }}>
                     {lang === 'ka' ? '4D ექსპერტული ულტრაბგერითი სისტემა (GE Voluson)' : '4D Expert Ultrasound System (GE Voluson)'}
@@ -2566,10 +2531,10 @@ export default function App() {
 
                 <article className="glass-neu p-4" style={{ boxShadow: 'inset 2px 2px 5px rgba(166,160,146,0.05)' }}>
                   <h4 className="font-bold text-sm mb-1" style={{ color: 'var(--app-text-dark)' }}>
-                    {lang === 'ka' ? 'VIP და სტანდარტული პოსტნატალური პალატები' : 'VIP & Standard Postpartum Suites'}
+                    {lang === 'ka' ? 'ფეტალური მონიტორინგისა და კარდიოტოკოგრაფიის (CTG) სისტემები' : 'Fetal Telemetry & Cardiotocography (CTG) Systems'}
                   </h4>
                   <p className="text-xs mb-2">
-                    {lang === 'ka' ? 'მყუდრო, ნათელი პალატები ინდივიდუალური სველი წერტილით, გამოძახების ღილაკით, Wi-Fi-ით, კლიმატ-კონტროლითა და მეძუძური დედისთვის შედგენილი მენიუთი.' : 'Bright, comfortable rooms with private bathrooms, nurse call system, Wi-Fi, climate control, and nutritionist-curated meals.'}
+                    {lang === 'ka' ? 'ნაყოფის გულისცემისა და დედის სასიცოცხლო პარამეტრების უწყვეტი 24/7 მონიტორინგი.' : 'Continuous 24/7 monitoring of fetal heart rate and maternal vital signs.'}
                   </p>
                 </article>
               </div>
