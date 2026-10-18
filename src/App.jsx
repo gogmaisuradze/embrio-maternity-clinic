@@ -51,14 +51,6 @@ const GRADS = [
   "linear-gradient(135deg, #E89D72, #C97A4E)"
 ]
 
-const BOT_RESPONSES_EN = {
-  welcome: 'Hello! I am EmbrioBot — AI assistant of Embrio Maternity Clinic. Click "Start" or write your question below:'
-};
-
-const BOT_RESPONSES = {
-  welcome: 'გამარჯობა! მე ვარ EmbrioBot — სამშობიარო კლინიკა „ემბრიოს“ AI ასისტენტი. დააჭირეთ „დაწყებას“ ან მოგვწერეთ შეკითხვა:'
-}
-
 const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const MONTHS = ["იანვარი", "თებერვალი", "მარტი", "აპრილი", "მაისი", "ივნისი", "ივლისი", "აგვისტო", "სექტემბერი", "ოქტომბერი", "ნოემბერი", "დეკემბერი"]
 const WDS = ["ორ", "სამ", "ოთხ", "ხუთ", "პარ", "შაბ", "კვ"]
@@ -664,9 +656,7 @@ export default function App() {
   const [chatUnread, setChatUnread] = useState(1)
   const [customMessage, setCustomMessage] = useState('')
   const [isBotTyping, setIsBotTyping] = useState(false)
-  const [messages, setMessages] = useState([
-    { id: 1, sender: 'bot', text: (lang === 'ka' ? BOT_RESPONSES.welcome : BOT_RESPONSES_EN.welcome) }
-  ])
+  const [messages, setMessages] = useState([])
 
   // Calendar states
   const [today] = useState(() => {
@@ -2018,7 +2008,7 @@ export default function App() {
               <div ref={chatEndRef} />
             </div>
 
-            {messages.length === 1 && !isBotTyping && (
+            {messages.length === 0 && !isBotTyping && (
               <div className="chat-quick-actions">
                 <div className="chat-quick-btns" style={{ justifyContent: 'center' }}>
                   <button
