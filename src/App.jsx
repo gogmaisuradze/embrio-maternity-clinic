@@ -52,17 +52,11 @@ const GRADS = [
 ]
 
 const BOT_RESPONSES_EN = {
-  welcome: 'Hello! I am EmbrioBot — virtual assistant of Embrio Maternity Clinic. How can I help you today? Choose a topic or write to us:',
-  services: 'At Embrio Maternity Clinic we offer full maternal & reproductive care: Physiological Delivery & Cesarean Section (24/7), Prenatal Care, Gynecology, Reproductology & Andrology, Neonatology (NICU), 4D Ultrasound, and Painless Epidural Anesthesia.',
-  prices: 'Physiological delivery starts from 1,200₾, Cesarean section from 1,650₾. Obstetrician consultation is 70₾.',
-  contact: 'Embrio Maternity Clinic is located in Tbilisi, Digomi Medical Cluster, 2/6 Academician Lubliana St. Maternity & Emergency Block: 24/7 · Outpatient Clinic: Mon–Sat 09:30–18:00. Hotline: (032) 2 51 86 24 · Email: info@embrio.ge.'
+  welcome: 'Hello! I am EmbrioBot — virtual assistant of Embrio Maternity Clinic. How can I help you today? Choose a topic or write to us:'
 };
 
 const BOT_RESPONSES = {
-  welcome: 'გამარჯობა! მე ვარ EmbrioBot — სამშობიარო კლინიკა „ემბრიოს“ ციფრული ასისტენტი. რით შემიძლია დაგეხმაროთ დღეს? აირჩიეთ კითხვა ან მოგვწერეთ:',
-  services: 'სამშობიარო კლინიკა „ემბრიოში“ გთავაზობთ სრულ სამეანო-გინეკოლოგიურ და რეპროდუქტოლოგიურ მომსახურებას: ფიზიოლოგიური მშობიარობა და საკეისრო კვეთა (24/7), ორსულთა ანტენატალური პატრონაჟი, გინეკოლოგია, რეპროდუქტოლოგია და ანდროლოგია, ნეონატოლოგია, 4D ექოსკოპია და უმტკივნეულო ეპიდურული ანესთეზია.',
-  prices: 'ფიზიოლოგიური მშობიარობა — 1200₾-დან, საკეისრო კვეთა — 1650₾-დან. მეან-გინეკოლოგის კონსულტაცია — 70₾.',
-  contact: 'კლინიკა „ემბრიო“ მდებარეობს თბილისში, დიღმის მასივში, აკადემიკოს ლუბლიანას ქ. №2/6 (№13/6). სამშობიარო და მიმღები ბლოკი მუშაობს 24/7 რეჟიმში · ამბულატორია: ორშ – შაბ: 09:30–18:00. ცხელი ხაზი: (032) 2 51 86 24 · ელ-ფოსტა: info@embrio.ge.'
+  welcome: 'გამარჯობა! მე ვარ EmbrioBot — სამშობიარო კლინიკა „ემბრიოს“ ციფრული ასისტენტი. რით შემიძლია დაგეხმაროთ დღეს? აირჩიეთ კითხვა ან მოგვწერეთ:'
 }
 
 const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -70,10 +64,25 @@ const MONTHS = ["იანვარი", "თებერვალი", "მა�
 const WDS = ["ორ", "სამ", "ოთხ", "ხუთ", "პარ", "შაბ", "კვ"]
 const TIMES = ["09:30", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"]
 
-// n8n ჩატ-ბოტის "ტვინი" — ცოდნის ბაზა + Gemini (იგივე, რაც Telegram ბოტისთვის)
-const EMBRIO_CHAT_WEBHOOK = 'https://meticulous-oyster.pikapod.net/webhook/embrio-website-chat'
-// სესიის id — თითო ბრაუზერის ჩატს ცალკე მეხსიერება ჰქონდეს
-const EMBRIO_CHAT_SESSION = 'web-' + Math.random().toString(36).slice(2) + Date.now().toString(36)
+const CHAT_WEBHOOK = 'https://meticulous-oyster.pikapod.net/webhook/embrio-website-chat';
+const SESSION_ID = localStorage.getItem('embrioChatSession')
+  || (localStorage.setItem('embrioChatSession', 'web-' + Math.random().toString(36).slice(2) + Date.now().toString(36)),
+      localStorage.getItem('embrioChatSession'));
+
+async function askEmbrioBot(message) {
+  try {
+    const res = await fetch(CHAT_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, sessionId: SESSION_ID })
+    });
+    const data = await res.json();
+    return data.output;
+  } catch (e) {
+    return 'ბოდიში, დროებით კავშირის პრობლემაა. გთხოვთ, სცადოთ ხელახლა ან დაგვირეკოთ: (032) 2 51 86 24';
+  }
+}
+
 
 const SERVICES_DETAILS_EN = {
   obstetrics: {
@@ -654,6 +663,7 @@ export default function App() {
   const [showChat, setShowChat] = useState(false)
   const [chatUnread, setChatUnread] = useState(1)
   const [customMessage, setCustomMessage] = useState('')
+  const [isBotTyping, setIsBotTyping] = useState(false)
   const [messages, setMessages] = useState([
     { id: 1, sender: 'bot', text: (lang === 'ka' ? BOT_RESPONSES.welcome : BOT_RESPONSES_EN.welcome) }
   ])
@@ -806,7 +816,7 @@ export default function App() {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [messages])
+  }, [messages, isBotTyping])
 
   // Filtered doctors list
   const filteredDoctors = DOCTORS.filter(d => {
@@ -819,51 +829,18 @@ export default function App() {
     return matchesSearch && matchesCategory;
   })
 
-  // Smart Local + Assistant Reply for EmbrioBot
-  const generateEmbrioBotReply = (text, queryType) => {
-    const dict = lang === 'ka' ? BOT_RESPONSES : BOT_RESPONSES_EN;
-    if (queryType && dict[queryType]) {
-      return dict[queryType];
-    }
-    const lower = text.toLowerCase();
-    if (lower.includes('ფას') || lower.includes('ღირ') || lower.includes('price') || lower.includes('cost')) {
-      return dict.prices;
-    }
-    if (lower.includes('მისამართ') || lower.includes('სად') || lower.includes('ტელეფონ') || lower.includes('ლუბლიან') || lower.includes('address') || lower.includes('phone') || lower.includes('where')) {
-      return dict.contact;
-    }
-    if (lower.includes('სერვის') || lower.includes('მშობიარ') || lower.includes('საკეისრო') || lower.includes('ექოსკოპ') || lower.includes('service') || lower.includes('delivery')) {
-      return dict.services;
-    }
-    return lang === 'ka'
-      ? 'გმადლობთ შეტყობინებისთვის! დეტალური კონსულტაციისა და ვიზიტის დასაჯავშნად შეგიძლიათ აირჩიოთ სასურველი დრო ჩვენს ონლაინ კალენდარში ან დაგვიკავშირდეთ 24/7 ცხელ ხაზზე: (032) 2 51 86 24 · info@embrio.ge.'
-      : 'Thank you for your message! To schedule a visit, please pick a convenient date and time in our online booking calendar below or call our 24/7 hotline: (032) 2 51 86 24 · info@embrio.ge.';
-  }
-
-  const sendChatMessage = async (userText, queryType = null) => {
+  const sendChatMessage = async (userText) => {
     if (!userText || !userText.trim()) return
     const textToSend = userText.trim()
     setMessages(prev => [...prev, { id: Date.now(), sender: 'user', text: textToSend }])
-
-    // n8n ბოტს ვეკითხებით; თუ ვერ მივწვდით — ლოკალური პასუხი სარეზერვოდ
-    try {
-      const res = await fetch(EMBRIO_CHAT_WEBHOOK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: textToSend, sessionId: EMBRIO_CHAT_SESSION })
-      })
-      if (!res.ok) throw new Error('bad status ' + res.status)
-      const data = await res.json()
-      const reply = (data && data.output) ? data.output : generateEmbrioBotReply(textToSend, queryType)
-      setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'bot', text: reply }])
-    } catch (e) {
-      const reply = generateEmbrioBotReply(textToSend, queryType)
-      setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'bot', text: reply }])
-    }
+    setIsBotTyping(true)
+    const reply = await askEmbrioBot(textToSend)
+    setIsBotTyping(false)
+    setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'bot', text: reply }])
   }
 
-  const handleBotQuery = (queryType, userText) => {
-    sendChatMessage(userText, queryType)
+  const handleBotQuery = (userText) => {
+    sendChatMessage(userText)
   }
 
   const handleCustomMessageSubmit = (e) => {
@@ -2026,23 +2003,30 @@ export default function App() {
             <div className="chat-viewport">
               {messages.map((m) => (
                 <div key={m.id} className={`chat-msg-row ${m.sender === 'user' ? 'user' : 'bot'}`}>
-                  <div className={`chat-msg ${m.sender === 'user' ? 'user' : 'bot'}`}>
+                  <div className={`chat-msg ${m.sender === 'user' ? 'user' : 'bot'}`} style={{ whiteSpace: 'pre-wrap' }}>
                     {m.text}
                   </div>
                 </div>
               ))}
+              {isBotTyping && (
+                <div className="chat-msg-row bot">
+                  <div className="chat-msg bot" style={{ opacity: 0.75, fontStyle: 'italic' }}>
+                    {lang === 'ka' ? 'წერს…' : 'Typing…'}
+                  </div>
+                </div>
+              )}
               <div ref={chatEndRef} />
             </div>
 
             <div className="chat-quick-actions">
               <div className="chat-quick-btns">
-                <button onClick={() => handleBotQuery('services', lang === 'ka' ? 'სერვისები' : 'Services')} className="chat-quick-btn">
+                <button onClick={() => handleBotQuery(lang === 'ka' ? 'სერვისები' : 'Services')} className="chat-quick-btn">
                   {lang === 'ka' ? 'სერვისები' : 'Services'}
                 </button>
-                <button onClick={() => handleBotQuery('prices', lang === 'ka' ? 'მშობიარობის ფასები' : 'Delivery Prices')} className="chat-quick-btn">
+                <button onClick={() => handleBotQuery(lang === 'ka' ? 'ფასები' : 'Prices')} className="chat-quick-btn">
                   {lang === 'ka' ? 'ფასები' : 'Prices'}
                 </button>
-                <button onClick={() => handleBotQuery('contact', lang === 'ka' ? 'მისამართი' : 'Address')} className="chat-quick-btn">
+                <button onClick={() => handleBotQuery(lang === 'ka' ? 'მისამართი' : 'Address')} className="chat-quick-btn">
                   {lang === 'ka' ? 'მისამართი' : 'Address'}
                 </button>
               </div>
