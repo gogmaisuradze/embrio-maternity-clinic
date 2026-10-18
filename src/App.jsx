@@ -70,6 +70,11 @@ const MONTHS = ["იანვარი", "თებერვალი", "მა�
 const WDS = ["ორ", "სამ", "ოთხ", "ხუთ", "პარ", "შაბ", "კვ"]
 const TIMES = ["09:30", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"]
 
+// n8n ჩატ-ბოტის "ტვინი" — ცოდნის ბაზა + Gemini (იგივე, რაც Telegram ბოტისთვის)
+const EMBRIO_CHAT_WEBHOOK = 'https://meticulous-oyster.pikapod.net/webhook/embrio-website-chat'
+// სესიის id — თითო ბრაუზერის ჩატს ცალკე მეხსიერება ჰქონდეს
+const EMBRIO_CHAT_SESSION = 'web-' + Math.random().toString(36).slice(2) + Date.now().toString(36)
+
 const SERVICES_DETAILS_EN = {
   obstetrics: {
     title: "Obstetrics & Delivery",
@@ -835,15 +840,26 @@ export default function App() {
       : 'Thank you for your message! To schedule a visit, please pick a convenient date and time in our online booking calendar below or call our 24/7 hotline: (032) 2 51 86 24 · info@embrio.ge.';
   }
 
-  const sendChatMessage = (userText, queryType = null) => {
+  const sendChatMessage = async (userText, queryType = null) => {
     if (!userText || !userText.trim()) return
     const textToSend = userText.trim()
     setMessages(prev => [...prev, { id: Date.now(), sender: 'user', text: textToSend }])
 
-    setTimeout(() => {
+    // n8n ბოტს ვეკითხებით; თუ ვერ მივწვდით — ლოკალური პასუხი სარეზერვოდ
+    try {
+      const res = await fetch(EMBRIO_CHAT_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: textToSend, sessionId: EMBRIO_CHAT_SESSION })
+      })
+      if (!res.ok) throw new Error('bad status ' + res.status)
+      const data = await res.json()
+      const reply = (data && data.output) ? data.output : generateEmbrioBotReply(textToSend, queryType)
+      setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'bot', text: reply }])
+    } catch (e) {
       const reply = generateEmbrioBotReply(textToSend, queryType)
       setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'bot', text: reply }])
-    }, 380)
+    }
   }
 
   const handleBotQuery = (queryType, userText) => {
