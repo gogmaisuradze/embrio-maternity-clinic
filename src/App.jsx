@@ -205,7 +205,7 @@ const SERVICES_DETAILS = {
   },
   reproductology: {
     title: "რეპროდუქტოლოგია",
-    desc: "ქალისა და მამაკაცის უნაყოფობის კომპლექსური დიაგნოსტიკა და მკურნალობა კლინიკა EMBRYO-ს წამყვანი რეპროდუქტოლოგებისა და ანდროლოგების მიერ.",
+    desc: "ქალისა და მამაკაცის უნაყოფობის კომპლექსური დიაგნოსტიკა და მკურნალობა კლინიკა „ემბრიოს“ წამყვანი რეპროდუქტოლოგებისა და ანდროლოგების მიერ.",
     subs: [
       { title: "წყვილის კომპლექსური კვლევა", text: "ჰორმონალური პროფილი, ფოლიკულომეტრია, მილების გამტარობის კვლევა და იმუნოლოგიური შეფასება." },
       { title: "ანდროლოგია და სპერმოგრამა", text: "მამაკაცის რეპროდუქციული ჯანმრთელობის დიაგნოსტიკა და მკურნალობა კლინიკის ხელმძღვანელ თეიმურაზ გაგნიძესთან." },
@@ -278,17 +278,17 @@ const ENAMEL_DETAILS = {
   sweets: {
     title: "I ტრიმესტრი (1–12 კვირა)",
     damage: "პირველი 12 კვირის განმავლობაში ყალიბდება ნაყოფის ყველა სასიცოცხლო ორგანო. ამ ეტაპზე უმნიშვნელოვანესია ორსულობის დროული აღრიცხვა, პირველადი ლაბორატორიული კვლევები და 11–13 კვირის გენეტიკური ექოსკოპიური სკრინინგი.",
-    tip: "დადგით ორსულობის ანტენატალურ აღრიცხვაზე კლინიკა EMBRYO-ში 6–12 კვირის ვადაზე, მიიღეთ ექიმის მიერ დანიშნული ფოლიუმის მჟავა და მოერიდეთ თვითნებურ მედიკამენტებს."
+    tip: "დადგით ორსულობის ანტენატალურ აღრიცხვაზე კლინიკა „ემბრიოში“ 6–12 კვირის ვადაზე, მიიღეთ ექიმის მიერ დანიშნული ფოლიუმის მჟავა და მოერიდეთ თვითნებურ მედიკამენტებს."
   },
   smoking: {
     title: "II ტრიმესტრი (13–27 კვირა)",
     damage: "ორსულობის ყველაზე მშვიდი და სასიამოვნო პერიოდი, როდესაც მომავალი დედა პირველად გრძნობს პატარას მოძრაობას. 18–22 კვირაზე ტარდება ექსპერტული 4D ანატომიური ექოსკოპია ნაყოფის განვითარების დეტალური შეფასებისთვის.",
-    tip: "24–28 კვირაზე ჩაიტარეთ გესტაციური დიაბეტის სკრინინგი, აკონტროლეთ რკინისა და კალციუმის ბალანსი და დაესწარით EMBRYO-ს მშობელთა სკოლის პრაქტიკულ შეხვედრებს."
+    tip: "24–28 კვირაზე ჩაიტარეთ გესტაციური დიაბეტის სკრინინგი, აკონტროლეთ რკინისა და კალციუმის ბალანსი და დაესწარით „ემბრიოს“ მშობელთა სკოლის პრაქტიკულ შეხვედრებს."
   },
   coffee: {
     title: "III ტრიმესტრი და მშობიარობის დაგეგმვა (28–40 კვირა)",
     damage: "ნაყოფი აქტიურად იმატებს წონაში და ემზადება დაბადებისთვის. ამ პერიოდში რეგულარულად ტარდება კარდიოტოკოგრაფია (CTG) და დოპლეროგრაფია დედა-პლაცენტა-ნაყოფის სისხლის მიმოქცევის შესაფასებლად.",
-    tip: "34–36 კვირაზე შეარჩიეთ პირადი მეან-გინეკოლოგი კლინიკა EMBRYO-ში და შეადგინეთ თქვენი მშობიარობის ინდივიდუალური გეგმა."
+    tip: "34–36 კვირაზე შეარჩიეთ პირადი მეან-გინეკოლოგი კლინიკა „ემბრიოში“ და შეადგინეთ თქვენი მშობიარობის ინდივიდუალური გეგმა."
   }
 }
 
@@ -393,7 +393,7 @@ const DOCTORS_DETAILS = {
     image: `${import.meta.env.BASE_URL}images/mzia-kapanadze.jpg`,
     specialization: "მეანობა-გინეკოლოგია, ორსულთა პატრონაჟი და ანტენატალური მეთვალყურეობა, ფიზიოლოგიური მშობიარობა და საკეისრო კვეთა, რეპროდუქტოლოგია.",
     education: "თბილისის სახელმწიფო სამედიცინო უნივერსიტეტი.\nსახელმწიფო სერტიფიკატები მეანობა-გინეკოლოგიასა და რეპროდუქტოლოგიაში.",
-    bio: "სამშობიარო კლინიკა EMBRYO-ს წამყვანი მეან-გინეკოლოგი და რეპროდუქტოლოგი. მრავალწლიანი კლინიკური გამოცდილებით, განსაკუთრებული სითბოთი და ინდივიდუალური მიდგომით ზრუნავს მომავალ დედებზე ორსულობის დაგეგმვიდან უსაფრთხო მშობიარობამდე."
+    bio: "სამშობიარო კლინიკა „ემბრიოს“ წამყვანი მეან-გინეკოლოგი და რეპროდუქტოლოგი. მრავალწლიანი კლინიკური გამოცდილებით, განსაკუთრებული სითბოთი და ინდივიდუალური მიდგომით ზრუნავს მომავალ დედებზე ორსულობის დაგეგმვიდან უსაფრთხო მშობიარობამდე."
   },
   "teimuraz-gagnidze": {
     name: "თეიმურაზ გაგნიძე",
@@ -401,7 +401,7 @@ const DOCTORS_DETAILS = {
     image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800",
     specialization: "მამაკაცისა და წყვილის უნაყოფობის დიაგნოსტიკა და მკურნალობა, რეპროდუქტოლოგია, კლინიკური მენეჯმენტი.",
     education: "უმაღლესი სამედიცინო განათლება, სერტიფიცირებული ანდროლოგი და რეპროდუქტოლოგი მრავალწლიანი კლინიკური გამოცდილებით.",
-    bio: "სამშობიარო და რეპროდუქტოლოგიური კლინიკა EMBRYO-ს დამფუძნებელი და გენერალური დირექტორი. ათწლეულების განმავლობაში ეხმარება წყვილებს ნანატრი შვილის ყოლასა და რეპროდუქციული ჯანმრთელობის აღდგენაში."
+    bio: "სამშობიარო და რეპროდუქტოლოგიური კლინიკა „ემბრიოს“ დამფუძნებელი და გენერალური დირექტორი. ათწლეულების განმავლობაში ეხმარება წყვილებს ნანატრი შვილის ყოლასა და რეპროდუქციული ჯანმრთელობის აღდგენაში."
   },
   "aleko-diakonidze": {
     name: "ალეკო დიაკონიძე",
@@ -409,7 +409,7 @@ const DOCTORS_DETAILS = {
     image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800",
     specialization: "ფიზიოლოგიური მშობიარობა, საკეისრო კვეთა, რეპროდუქტოლოგია, მაღალი რისკის ორსულობის მართვა.",
     education: "თბილისის სახელმწიფო სამედიცინო უნივერსიტეტი.\nსახელმწიფო სერტიფიკატები მეანობა-გინეკოლოგიასა და რეპროდუქტოლოგიაში.",
-    bio: "კლინიკა EMBRYO-ს წამყვანი მეან-გინეკოლოგი და რეპროდუქტოლოგი. გამოირჩევა ინდივიდუალური მიდგომით, ორსულობის დაგეგმვიდან უსაფრთხო მშობიარობამდე."
+    bio: "კლინიკა „ემბრიოს“ წამყვანი მეან-გინეკოლოგი და რეპროდუქტოლოგი. გამოირჩევა ინდივიდუალური მიდგომით, ორსულობის დაგეგმვიდან უსაფრთხო მშობიარობამდე."
   },
   "aleksandre-koiava": {
     name: "ალექსანდრე ქოიავა",
@@ -425,7 +425,7 @@ const DOCTORS_DETAILS = {
     image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800",
     specialization: "ორსულთა ანტენატალური პატრონაჟი, ამბულატორიული გინეკოლოგია, ფიზიოლოგიური მშობიარობა, კოლპოსკოპია.",
     education: "თბილისის სახელმწიფო სამედიცინო უნივერსიტეტი, რეზიდენტურა მეანობა-გინეკოლოგიაში.",
-    bio: "კლინიკა EMBRYO-ს გამოცდილი მეან-გინეკოლოგი. ზრუნავს მომავალ დედებზე ორსულობის პირველივე კვირიდან მშობიარობის ჩათვლით."
+    bio: "კლინიკა „ემბრიოს“ გამოცდილი მეან-გინეკოლოგი. ზრუნავს მომავალ დედებზე ორსულობის პირველივე კვირიდან მშობიარობის ჩათვლით."
   },
   "nino-kvaratskhelia": {
     name: "ნინო კვარაცხელია",
@@ -624,8 +624,10 @@ export default function App() {
     const root = document.documentElement;
     if (lang === 'en') {
       root.classList.add('lang-en');
+      document.title = 'EMBRYO — Maternity & Reproductive Clinic in Tbilisi';
     } else {
       root.classList.remove('lang-en');
+      document.title = 'ემბრიო — სამშობიარო და რეპროდუქტოლოგიური კლინიკა თბილისში';
     }
   }, [lang]);
 
@@ -914,7 +916,7 @@ export default function App() {
               style={{ width: '34px', height: '42px', objectFit: 'contain' }} 
             />
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
-              <span>EMBRYO</span>
+              <span>{lang === 'ka' ? 'ემბრიო' : 'EMBRYO'}</span>
               <span style={{ fontSize: '0.65rem', fontFamily: 'var(--font-sans)', fontWeight: 700, color: 'var(--accent-color)', letterSpacing: '0.04em' }}>
                 {lang === 'ka' ? 'სამშობიარო კლინიკა' : 'MATERNITY CLINIC'}
               </span>
@@ -968,7 +970,7 @@ export default function App() {
               {/* Left-Side Transparent Info & Functional Controls (Opposite the 3D Wall Logo on the Right) */}
               <div className="hero-cover-content-panel">
                 <span className="hero-cover-eyebrow">
-                  {lang === 'ka' ? '✦ სამშობიარო კლინიკა EMBRYO · 24/7' : '✦ Embryo Maternity Clinic · 24/7'}
+                  {lang === 'ka' ? '✦ სამშობიარო კლინიკა ემბრიო · 24/7' : '✦ Embryo Maternity Clinic · 24/7'}
                 </span>
 
                 <h1 className="hero-cover-title">
@@ -1327,7 +1329,7 @@ export default function App() {
         <div className="wrap text-left">
           <div className="glass-neu">
             <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--accent-color)', display: 'block', marginBottom: '6px' }}>
-              {lang === 'ka' ? '✦ კლინიკა EMBRYO-ს გუნდი' : '✦ Embryo Medical Team'}
+              {lang === 'ka' ? '✦ კლინიკა ემბრიოს გუნდი' : '✦ Embryo Medical Team'}
             </span>
             <h2 className="font-serif font-bold text-2xl mb-5" style={{ color: 'var(--app-text-dark)' }}>
               {lang === 'ka' ? 'აირჩიე სპეციალისტი და მიმართულება' : 'Choose Specialist & Department'}
@@ -1386,7 +1388,7 @@ export default function App() {
                           role: d.s,
                           image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800",
                           specialization: d.s,
-                          bio: lang === 'ka' ? "სამშობიარო კლინიკა EMBRYO-ს წამყვანი სპეციალისტი." : "Leading specialist at Embryo Maternity Clinic.",
+                          bio: lang === 'ka' ? "სამშობიარო კლინიკა „ემბრიოს“ წამყვანი სპეციალისტი." : "Leading specialist at Embryo Maternity Clinic.",
                           education: lang === 'ka' ? "უმაღლესი სამედიცინო განათლება, სახელმწიფო სერტიფიკატი." : "Higher medical education, state board certification."
                         });
                       }
@@ -1469,7 +1471,7 @@ export default function App() {
           <div className="head">
             <span className="eyebrow">{lang === 'ka' ? 'კლინიკის გზამკვლევი' : 'Clinical Hub'}</span>
             <h2>{lang === 'ka' ? 'გაეცანით დეტალებს' : 'Explore Embryo Clinic'}</h2>
-            <p>{lang === 'ka' ? 'აირჩიეთ სასურველი სექცია სამშობიარო კლინიკა EMBRYO-ს პალატების, ფასებისა და სერვისების შესახებ სრული ინფორმაციის მისაღებად.' : 'Select a section to explore complete information about Embryo Clinic wards, packages, and medical achievements.'}</p>
+            <p>{lang === 'ka' ? 'აირჩიეთ სასურველი სექცია სამშობიარო კლინიკა „ემბრიოს“ პალატების, ფასებისა და სერვისების შესახებ სრული ინფორმაციის მისაღებად.' : 'Select a section to explore complete information about Embryo Clinic wards, packages, and medical achievements.'}</p>
           </div>
           
           <div className="menu-hub-grid">
@@ -1601,7 +1603,7 @@ export default function App() {
                 />
               </div>
               <h3>{lang === 'ka' ? '24/7 სამეანო მზადყოფნა' : '24/7 Maternity Readiness'}</h3>
-              <p>{lang === 'ka' ? 'სამშობიარო კლინიკა EMBRYO გთავაზობთ 24/7 უწყვეტ მეთვალყურეობასა და გამოცდილ მეან-გინეკოლოგთა გუნდს.' : 'Embryo Maternity Clinic offers 24/7 continuous supervision and an experienced obstetric team.'}</p>
+              <p>{lang === 'ka' ? 'სამშობიარო კლინიკა „ემბრიო“ გთავაზობთ 24/7 უწყვეტ მეთვალყურეობასა და გამოცდილ მეან-გინეკოლოგთა გუნდს.' : 'Embryo Maternity Clinic offers 24/7 continuous supervision and an experienced obstetric team.'}</p>
               <a href="#booking" className="btn btn-primary">{lang === 'ka' ? 'დაჯავშნე კონსულტაცია' : 'Book Consultation'}</a>
             </div>
           </div>
@@ -1708,7 +1710,7 @@ export default function App() {
                     <Check className="w-5 h-5" />
                   </div>
                   <h4 className="font-serif font-bold text-sm mb-1">{lang === 'ka' ? 'ჯავშანი წარმატებით გაიგზავნა!' : 'Booking Request Sent!'}</h4>
-                  <p className="text-xs">{lang === 'ka' ? 'კლინიკა EMBRYO-ს რეგისტრატურა მალე დაგიკავშირდებათ.' : 'Embryo Clinic reception will contact you shortly.'}</p>
+                  <p className="text-xs">{lang === 'ka' ? 'კლინიკა „ემბრიოს“ რეგისტრატურა მალე დაგიკავშირდებათ.' : 'Embryo Clinic reception will contact you shortly.'}</p>
                 </div>
               ) : (
                 <form onSubmit={handleBookingSubmit}>
@@ -1789,11 +1791,11 @@ export default function App() {
               </div>
             </div>
 
-            <a className="citem" href="mailto:info@embrio.ge" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+            <a className="citem" href="mailto:info@embryo.ge" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
               <span className="ic"><Mail className="w-5 h-5" /></span>
               <div>
                 <div className="lab">{lang === 'ka' ? 'ელ. ფოსტა' : 'Email'}</div>
-                <div className="val">info@embrio.ge</div>
+                <div className="val">info@embryo.ge</div>
               </div>
             </a>
 
@@ -1828,11 +1830,11 @@ export default function App() {
                   <a href="#top" className="footer-brand-row">
                     <img
                       src={`${import.meta.env.BASE_URL}images/logo-clean.png`}
-                      alt="სამშობიარო კლინიკა EMBRYO"
+                      alt="სამშობიარო კლინიკა ემბრიო"
                       className="footer-brand-logo"
                     />
                     <span className="footer-brand-title">
-                      {lang === 'ka' ? 'სამშობიარო კლინიკა EMBRYO' : 'Embryo Maternity Clinic'}
+                      {lang === 'ka' ? 'სამშობიარო კლინიკა ემბრიო' : 'Embryo Maternity Clinic'}
                     </span>
                   </a>
                   <span className="footer-tagline">
@@ -1877,7 +1879,7 @@ export default function App() {
                     <span className="f-icon"><Mail className="w-4 h-4" /></span>
                     <div>
                       <strong>{lang === 'ka' ? 'ელ-ფოსტა:' : 'Email:'}</strong>
-                      <p><a href="mailto:info@embrio.ge">info@embrio.ge</a></p>
+                      <p><a href="mailto:info@embryo.ge">info@embryo.ge</a></p>
                     </div>
                   </div>
                 </div>
@@ -1892,7 +1894,7 @@ export default function App() {
                       rel="noopener noreferrer"
                       className="social-chip"
                       aria-label="Facebook"
-                      title="Facebook — სამშობიარო კლინიკა EMBRYO"
+                      title="Facebook — სამშობიარო კლინიკა ემბრიო"
                     >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
@@ -1919,10 +1921,10 @@ export default function App() {
                       <Phone className="w-4 h-4" />
                     </a>
                     <a
-                      href="mailto:info@embrio.ge"
+                      href="mailto:info@embryo.ge"
                       className="social-chip"
                       aria-label="Email"
-                      title="info@embrio.ge"
+                      title="info@embryo.ge"
                     >
                       <Mail className="w-4 h-4" />
                     </a>
@@ -1941,7 +1943,7 @@ export default function App() {
                 <div className="footer-copyright-note">
                   <span>
                     {lang === 'ka'
-                      ? '© 2026 სამშობიარო კლინიკა EMBRYO. ყველა უფლება დაცულია.'
+                      ? '© 2026 სამშობიარო კლინიკა „ემბრიო“. ყველა უფლება დაცულია.'
                       : '© 2026 Embryo Maternity Clinic. All rights reserved.'}
                   </span>
                   <div className="footer-visitor-counter">
@@ -1960,10 +1962,10 @@ export default function App() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title={lang === 'ka' ? 'სამშობიარო კლინიკა EMBRYO-ს მდებარეობა' : 'Embryo Maternity Clinic Location'}
+                title={lang === 'ka' ? 'სამშობიარო კლინიკა ემბრიოს მდებარეობა' : 'Embryo Maternity Clinic Location'}
               ></iframe>
               <div className="map-status-badge">
-                📍 {lang === 'ka' ? 'სამშობიარო კლინიკა EMBRYO' : 'Embryo Maternity Clinic'}
+                📍 {lang === 'ka' ? 'სამშობიარო კლინიკა ემბრიო' : 'Embryo Maternity Clinic'}
               </div>
             </div>
           </div>
@@ -2076,11 +2078,11 @@ export default function App() {
                 {lang === 'ka' ? '✦ კლინიკის შესახებ' : '✦ About Embryo Clinic'}
               </span>
               <h3 className="font-serif font-bold text-xl mb-4" style={{ color: 'var(--app-text-dark)' }}>
-                {lang === 'ka' ? 'სამშობიარო კლინიკა EMBRYO — ახალი სიცოცხლის საიმედო კერა' : 'Embryo Maternity Clinic — Trusted Home for New Life'}
+                {lang === 'ka' ? 'სამშობიარო კლინიკა „ემბრიო“ — ახალი სიცოცხლის საიმედო კერა' : 'Embryo Maternity Clinic — Trusted Home for New Life'}
               </h3>
               <p className="text-sm leading-relaxed mb-3">
                 {lang === 'ka' 
-                  ? 'სამშობიარო სახლი და რეპროდუქტოლოგიური კლინიკა EMBRYO მრავალი წელია ერთგულად ემსახურება ქალისა და ახალშობილის ჯანმრთელობას თბილისში, დიღმის სამედიცინო კლასტერში (ლუბლიანას ქ. №2/6). ჩვენი გუნდი აერთიანებს ქვეყნის წამყვან მეან-გინეკოლოგებს, რეპროდუქტოლოგებს, ანდროლოგებს, ნეონატოლოგებსა და ანესთეზიოლოგებს.'
+                  ? 'სამშობიარო სახლი და რეპროდუქტოლოგიური კლინიკა „ემბრიო“ მრავალი წელია ერთგულად ემსახურება ქალისა და ახალშობილის ჯანმრთელობას თბილისში, დიღმის სამედიცინო კლასტერში (ლუბლიანას ქ. №2/6). ჩვენი გუნდი აერთიანებს ქვეყნის წამყვან მეან-გინეკოლოგებს, რეპროდუქტოლოგებს, ანდროლოგებს, ნეონატოლოგებსა და ანესთეზიოლოგებს.'
                   : 'For many years, Embryo Maternity & Reproductive Clinic has been dedicated to maternal and newborn healthcare in Tbilisi’s Digomi medical cluster (2/6 Lubliana St). Our team brings together leading obstetrician-gynecologists, reproductologists, andrologists, neonatologists, and anesthesiologists.'}
               </p>
               <p className="text-sm leading-relaxed mb-6">
@@ -2194,7 +2196,7 @@ export default function App() {
                             role: d.s,
                             image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800",
                             specialization: d.s,
-                            bio: lang === 'ka' ? "სამშობიარო კლინიკა EMBRYO-ს გამოცდილი სპეციალისტი." : "Experienced specialist at Embryo Maternity Clinic.",
+                            bio: lang === 'ka' ? "სამშობიარო კლინიკა „ემბრიოს“ გამოცდილი სპეციალისტი." : "Experienced specialist at Embryo Maternity Clinic.",
                             education: lang === 'ka' ? "უმაღლესი სამედიცინო განათლება და სერტიფიკატები." : "Higher medical education and board certifications."
                           });
                         }
@@ -2258,7 +2260,7 @@ export default function App() {
                 ✦ {lang === 'ka' ? 'ბედნიერი ისტორიები' : 'Happy Birth Stories'}
               </span>
               <h3 className="font-serif font-bold text-xl mb-4" style={{ color: 'var(--app-text-dark)' }}>
-                {lang === 'ka' ? 'ახალი სიცოცხლე კლინიკა EMBRYO-ში' : 'New Life at Embryo Clinic'}
+                {lang === 'ka' ? 'ახალი სიცოცხლე კლინიკა „ემბრიოში“' : 'New Life at Embryo Clinic'}
               </h3>
               <p className="text-sm mb-6">
                 {lang === 'ka' ? 'თითოეული დაბადებული პატარა და ბედნიერი ოჯახი ჩვენი გუნდის უდიდესი სიამაყეა.' : 'Every newborn baby and happy family is the greatest pride of our medical team.'}
@@ -2270,7 +2272,7 @@ export default function App() {
                     {lang === 'ka' ? 'ნანატრი ორსულობა და რეპროდუქტოლოგიური წარმატება' : 'Long-Awaited Pregnancy & Fertility Success'}
                   </h4>
                   <p className="text-xs mb-2">
-                    {lang === 'ka' ? '5-წლიანი უნაყოფობის შემდეგ, კლინიკა EMBRYO-ს რეპროდუქტოლოგიური და ანდროლოგიური გუნდის კომპლექსური მკურნალობით დადგა ფიზიოლოგიური ორსულობა და დაიბადა ჯანმრთელი ახალშობილი.' : 'After 5 years of infertility, comprehensive reproductive and andrological treatment at Embryo resulted in a healthy full-term birth.'}
+                    {lang === 'ka' ? '5-წლიანი უნაყოფობის შემდეგ, კლინიკა „ემბრიოს“ რეპროდუქტოლოგიური და ანდროლოგიური გუნდის კომპლექსური მკურნალობით დადგა ფიზიოლოგიური ორსულობა და დაიბადა ჯანმრთელი ახალშობილი.' : 'After 5 years of infertility, comprehensive reproductive and andrological treatment at Embryo resulted in a healthy full-term birth.'}
                   </p>
                   <span style={{ fontSize: '10px', fontWeight: 800, color: 'var(--accent-color)', textTransform: 'uppercase' }}>
                     {lang === 'ka' ? 'მიმართულება: რეპროდუქტოლოგია და მეანობა' : 'Department: Reproductology & Obstetrics'}
@@ -2324,7 +2326,7 @@ export default function App() {
                   ✦ {lang === 'ka' ? 'ფასების კატალოგი' : 'Price Catalog'}
                 </span>
                 <h3 className="font-serif font-bold text-xl mb-1" style={{ color: 'var(--app-text-dark)' }}>
-                  {lang === 'ka' ? 'კლინიკა EMBRYO-ს სერვისების ფასები' : 'Embryo Clinic Service Prices'}
+                  {lang === 'ka' ? 'კლინიკა „ემბრიოს“ სერვისების ფასები' : 'Embryo Clinic Service Prices'}
                 </h3>
                 <p className="text-xs">
                   {lang === 'ka' ? 'სამეანო, გინეკოლოგიური, რადიოლოგიური და ლაბორატორიული სერვისების ტარიფები.' : 'Rates for obstetric, gynecological, radiological, and laboratory services.'}
@@ -2495,7 +2497,7 @@ export default function App() {
                 {lang === 'ka' ? 'სამედიცინო აპარატურა და ტექნოლოგიები' : 'Medical Equipment & Technologies'}
               </h3>
               <p className="text-xs mb-6">
-                {lang === 'ka' ? 'კლინიკა EMBRYO აღჭურვილია ევროპული და ამერიკული წარმოების თანამედროვე სამეანო-ნეონატალური და დიაგნოსტიკური აპარატურით.' : 'Embryo Clinic is equipped with advanced European and American obstetric-neonatal and diagnostic technology.'}
+                {lang === 'ka' ? 'კლინიკა „ემბრიო“ აღჭურვილია ევროპული და ამერიკული წარმოების თანამედროვე სამეანო-ნეონატალური და დიაგნოსტიკური აპარატურით.' : 'Embryo Clinic is equipped with advanced European and American obstetric-neonatal and diagnostic technology.'}
               </p>
               
               <div className="flex flex-col gap-4">
@@ -2702,7 +2704,7 @@ export default function App() {
 
               <div>
                 <span style={{ fontSize: '10px', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.1em', color: 'var(--accent-color)', display: 'block', marginBottom: '4px' }}>
-                  ✦ {lang === 'ka' ? 'კლინიკა EMBRYO-ს სპეციალისტი' : 'Embryo Clinic Specialist'}
+                  ✦ {lang === 'ka' ? 'კლინიკა „ემბრიოს“ სპეციალისტი' : 'Embryo Clinic Specialist'}
                 </span>
                 <h3 className="font-serif font-bold text-2xl mb-1" style={{ color: 'var(--app-text-dark)' }}>
                   {activeDoctorDetail.name}
@@ -2932,7 +2934,7 @@ export default function App() {
                 ✦ {lang === 'ka' ? 'კლინიკის მდებარეობა' : 'Clinic Location'}
               </span>
               <h3 className="font-serif font-bold text-xl" style={{ color: 'var(--app-text-dark)' }}>
-                {lang === 'ka' ? 'სამშობიარო კლინიკა EMBRYO რუკაზე' : 'Embryo Maternity Clinic on Map'}
+                {lang === 'ka' ? 'სამშობიარო კლინიკა „ემბრიო“ რუკაზე' : 'Embryo Maternity Clinic on Map'}
               </h3>
               <p className="text-xs mt-1" style={{ color: 'var(--app-text-soft)' }}>
                 {lang === 'ka' ? 'აკადემიკოს ლუბლიანას ქ. №2/6, დიღმის მასივი, თბილისი' : '2/6 Academician Lubliana St, Digomi, Tbilisi'}
