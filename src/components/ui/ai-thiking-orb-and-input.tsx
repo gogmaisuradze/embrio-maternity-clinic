@@ -1,5 +1,5 @@
 // component.tsx
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from "react";
 import "../../index.css";
 
 /* ───────────────────────────── copy ───────────────────────────── */
@@ -23,6 +23,11 @@ export interface MorphOrbProps {
   labels?: string[];
   answerTitle?: string;
   onComplete?: (text: string) => void;
+}
+
+export interface MorphOrbHandle {
+  trigger: (text?: string) => void;
+  getPhase: () => Phase;
 }
 
 /* ─────────────────────────── geometry ─────────────────────────── */
@@ -798,7 +803,7 @@ function createRuntime(env: Env): Runtime {
 /* ───────────────────────────── component ───────────────────────────── */
 const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-export default function MorphOrb(props: MorphOrbProps) {
+const MorphOrb = React.forwardRef<MorphOrbHandle, MorphOrbProps>(function MorphOrb(props, ref) {
   const [phase, setPhaseState] = useState<Phase>("idle");
   const [value, setValue] = useState("");
   const activeLabels = props.labels && props.labels.length > 0 ? props.labels : COPY.labels;
@@ -929,14 +934,26 @@ export default function MorphOrb(props: MorphOrbProps) {
     if (e.key === "Enter" && (e.shiftKey || e.nativeEvent.isComposing)) e.preventDefault();
   };
 
-  const onFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const submitText = (queryText: string) => {
     const rt = rtRef.current;
     if (!rt || rt.busy() || phaseRef.current !== "idle") return;
-    const text = value.trim();
+    const text = queryText.trim();
     if (!text) { shake(); return; }
+    setValue(text);
     lastTextRef.current = text;
     rt.start(text, makeCfg());
+  };
+
+  useImperativeHandle(ref, () => ({
+    trigger: (text = "ემბრიო") => {
+      submitText(text);
+    },
+    getPhase: () => phaseRef.current
+  }), []);
+
+  const onFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    submitText(value);
   };
 
   const onReset = () => {
@@ -1065,4 +1082,6 @@ export default function MorphOrb(props: MorphOrbProps) {
       )}
     </div>
   );
-}
+});
+
+export default MorphOrb;

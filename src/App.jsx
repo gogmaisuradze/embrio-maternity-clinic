@@ -612,6 +612,8 @@ const renderServiceIcon = (key) => {
 
 export default function App() {
   const [siteUnlocked, setSiteUnlocked] = useState(false);
+  const [isTriggering, setIsTriggering] = useState(false);
+  const orbRef = useRef(null);
   const [lang, setLang] = useState(() => {
     return localStorage.getItem('embrio-site-lang') || 'ka';
   });
@@ -647,6 +649,7 @@ export default function App() {
       || q.includes('ემბრიო') || q.includes('embrio') || q.includes('embryo');
 
     setTimeout(() => {
+      setIsTriggering(false);
       if (isEmbrio) {
         setSiteUnlocked(true);
       } else if (q.includes('google')) {
@@ -956,10 +959,21 @@ export default function App() {
     }
   }
 
+  const handleDirectClick = () => {
+    if (isTriggering) return;
+    setIsTriggering(true);
+    if (orbRef.current) {
+      orbRef.current.trigger(lang === 'ka' ? 'ემბრიო' : 'embrio');
+    } else {
+      setSiteUnlocked(true);
+    }
+  };
+
   if (!siteUnlocked) {
     return (
       <div className="relative w-full h-screen overflow-hidden bg-[#09090a]">
         <MorphOrb 
+          ref={orbRef}
           placeholder={lang === 'ka' ? "ჩაწერე საიტი (ჩაწერე შენი კომპანიის სახელი)" : "Type a website (Enter your company name)"}
           labels={lang === 'ka' ? ["ვეძებთ საიტს...", "ვაანალიზებთ...", "ვუკავშირდებით...", "ვამზადებთ..."] : ["Searching...", "Analyzing...", "Connecting...", "Preparing..."]}
           answerTitle={lang === 'ka' ? "შედეგი" : "Destination"}
@@ -975,11 +989,15 @@ export default function App() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '8px'
+          gap: '8px',
+          pointerEvents: isTriggering ? 'none' : 'auto',
+          opacity: isTriggering ? 0.4 : 1,
+          transition: 'opacity 0.3s ease'
         }}>
           <button 
             type="button"
-            onClick={() => setSiteUnlocked(true)}
+            onClick={handleDirectClick}
+            disabled={isTriggering}
             style={{
               background: 'rgba(255, 255, 255, 0.08)',
               backdropFilter: 'blur(10px)',
@@ -988,14 +1006,14 @@ export default function App() {
               fontSize: '13px',
               padding: '8px 20px',
               borderRadius: '999px',
-              cursor: 'pointer',
+              cursor: isTriggering ? 'default' : 'pointer',
               transition: 'all 0.2s ease',
               display: 'flex',
               alignItems: 'center',
               gap: '6px'
             }}
-            onMouseOver={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)'; e.currentTarget.style.color = '#fff'; }}
-            onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.color = '#d4d4d4'; }}
+            onMouseOver={(e) => { if (!isTriggering) { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)'; e.currentTarget.style.color = '#fff'; } }}
+            onMouseOut={(e) => { if (!isTriggering) { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.color = '#d4d4d4'; } }}
           >
             <span>{lang === 'ka' ? 'პირდაპირ ემბრიოს საიტზე გადასვლა' : 'Skip & Enter Embrio Clinic'}</span>
             <span style={{ fontSize: '15px' }}>→</span>
