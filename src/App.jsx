@@ -848,15 +848,18 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Auto-open chatbot with 1.4s delay on desktop screens only (keep mobile unobstructed)
+  // Auto-open chatbot 4 seconds after entering the site
   useEffect(() => {
-    if (window.innerWidth <= 768) return
+    if (!siteUnlocked) {
+      setShowChat(false);
+      return;
+    }
     const timer = setTimeout(() => {
-      setShowChat(true)
-      setChatUnread(0)
-    }, 1400)
-    return () => clearTimeout(timer)
-  }, [])
+      setShowChat(true);
+      setChatUnread(0);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [siteUnlocked]);
 
   // Chat scroll anchor
   const chatEndRef = useRef(null)
