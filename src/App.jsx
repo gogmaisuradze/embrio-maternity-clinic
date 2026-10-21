@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import MorphOrb from '@/components/ui/ai-thiking-orb-and-input'
 import { 
   Calendar as CalendarIcon, 
   MessageSquare, 
@@ -610,9 +611,61 @@ const renderServiceIcon = (key) => {
 }
 
 export default function App() {
+  const [siteUnlocked, setSiteUnlocked] = useState(false);
   const [lang, setLang] = useState(() => {
     return localStorage.getItem('embrio-site-lang') || 'ka';
   });
+
+  const handleGateSubmit = async (query) => {
+    const q = query.trim().toLowerCase();
+    const isEmbrio = /^(ემბრიო|embrio|embryo|embrio\s*clinic|ემბრიოს\s*კლინიკა|კლინიკა)$/i.test(q)
+      || q.includes('ემბრიო') || q.includes('embrio') || q.includes('embryo');
+
+    if (isEmbrio) {
+      return lang === 'ka' 
+        ? 'მოგესალმებით სამშობიარო კლინიკა „ემბრიოს“ ოფიციალურ გვერდზე!'
+        : 'Welcome to Embrio Maternity & Reproductive Clinic!';
+    }
+    if (q.includes('google')) {
+      return lang === 'ka' ? 'გადამისამართება Google-ზე...' : 'Redirecting to Google...';
+    }
+    if (q.includes('youtube')) {
+      return lang === 'ka' ? 'გადამისამართება YouTube-ზე...' : 'Redirecting to YouTube...';
+    }
+    if (q.includes('facebook') || q.includes('ფეისბუქ')) {
+      return lang === 'ka' ? 'გადამისამართება Facebook-ზე...' : 'Redirecting to Facebook...';
+    }
+    if (q.includes('instagram') || q.includes('ინსტაგრამ')) {
+      return lang === 'ka' ? 'გადამისამართება Instagram-ზე...' : 'Redirecting to Instagram...';
+    }
+    return lang === 'ka' ? `გადავდივართ საიტზე: ${query}...` : `Redirecting to: ${query}...`;
+  };
+
+  const handleGateComplete = (query) => {
+    const q = query.trim().toLowerCase();
+    const isEmbrio = /^(ემბრიო|embrio|embryo|embrio\s*clinic|ემბრიოს\s*კლინიკა|კლინიკა)$/i.test(q)
+      || q.includes('ემბრიო') || q.includes('embrio') || q.includes('embryo');
+
+    setTimeout(() => {
+      if (isEmbrio) {
+        setSiteUnlocked(true);
+      } else if (q.includes('google')) {
+        window.location.href = 'https://www.google.com';
+      } else if (q.includes('youtube')) {
+        window.location.href = 'https://www.youtube.com';
+      } else if (q.includes('facebook') || q.includes('ფეისბუქ')) {
+        window.location.href = 'https://www.facebook.com';
+      } else if (q.includes('instagram') || q.includes('ინსტაგრამ')) {
+        window.location.href = 'https://www.instagram.com';
+      } else if (q.includes('.') && !q.startsWith('http')) {
+        window.location.href = `https://${q.replace(/^\/+/, '')}`;
+      } else if (q.startsWith('http://') || q.startsWith('https://')) {
+        window.location.href = q;
+      } else {
+        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+      }
+    }, 1300);
+  };
 
   const toggleLanguage = () => {
     playClickSound();
@@ -903,6 +956,58 @@ export default function App() {
     }
   }
 
+  if (!siteUnlocked) {
+    return (
+      <div className="relative w-full h-screen overflow-hidden bg-[#09090a]">
+        <MorphOrb 
+          placeholder={lang === 'ka' ? "ჩაწერეთ საიტი (მაგ: ემბრიო, embrio, google.com)..." : "Type a website (e.g. embrio, google.com)..."}
+          labels={lang === 'ka' ? ["ვეძებთ საიტს...", "ვაანალიზებთ...", "ვუკავშირდებით...", "ვამზადებთ..."] : ["Searching...", "Analyzing...", "Connecting...", "Preparing..."]}
+          answerTitle={lang === 'ka' ? "შედეგი" : "Destination"}
+          onSubmit={handleGateSubmit}
+          onComplete={handleGateComplete}
+        />
+        <div style={{
+          position: 'fixed',
+          bottom: '24px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 40,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '8px'
+        }}>
+          <button 
+            type="button"
+            onClick={() => setSiteUnlocked(true)}
+            style={{
+              background: 'rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              color: '#d4d4d4',
+              fontSize: '13px',
+              padding: '8px 20px',
+              borderRadius: '999px',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+            onMouseOver={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)'; e.currentTarget.style.color = '#fff'; }}
+            onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.color = '#d4d4d4'; }}
+          >
+            <span>{lang === 'ka' ? 'პირდაპირ ემბრიოს საიტზე გადასვლა' : 'Skip & Enter Embrio Clinic'}</span>
+            <span style={{ fontSize: '15px' }}>→</span>
+          </button>
+          <span style={{ fontSize: '11px', color: 'rgba(255, 255, 255, 0.4)', letterSpacing: '0.04em' }}>
+            {lang === 'ka' ? 'ჩაწერეთ „ემბრიო“ ან „embrio“ გვერდზე გადასასვლელად' : 'Type "embrio" or "embryo" to enter clinic site'}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen font-sans pb-16" id="top">
       
@@ -937,6 +1042,16 @@ export default function App() {
               aria-label="ენა"
             >
               {lang === 'ka' ? 'EN' : 'KA'}
+            </button>
+            <button 
+              onClick={() => setSiteUnlocked(false)}
+              className="lang-toggle-btn"
+              style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '0 10px' }}
+              title={lang === 'ka' ? 'საიტის ძიება / AI Orb' : 'Site Search / AI Orb'}
+              aria-label="AI Orb Search"
+            >
+              <Sparkles className="w-3.5 h-3.5" style={{ color: 'var(--accent-color)' }} />
+              <span style={{ fontSize: '11px', fontWeight: 600 }}>AI</span>
             </button>
             <button 
               onClick={toggleTheme}
