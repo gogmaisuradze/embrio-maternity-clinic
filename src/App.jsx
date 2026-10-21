@@ -960,7 +960,7 @@ export default function App() {
     return (
       <div className="relative w-full h-screen overflow-hidden bg-[#09090a]">
         <MorphOrb 
-          placeholder={lang === 'ka' ? "ჩაწერეთ საიტი (მაგ: ემბრიო, embrio, google.com)..." : "Type a website (e.g. embrio, google.com)..."}
+          placeholder={lang === 'ka' ? "ჩაწერე საიტი (ჩაწერე შენი კომპანიის სახელი)" : "Type a website (Enter your company name)"}
           labels={lang === 'ka' ? ["ვეძებთ საიტს...", "ვაანალიზებთ...", "ვუკავშირდებით...", "ვამზადებთ..."] : ["Searching...", "Analyzing...", "Connecting...", "Preparing..."]}
           answerTitle={lang === 'ka' ? "შედეგი" : "Destination"}
           onSubmit={handleGateSubmit}
