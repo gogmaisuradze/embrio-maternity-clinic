@@ -628,6 +628,14 @@ export default function App() {
         ? 'მოგესალმებით სამშობიარო კლინიკა „ემბრიოს“ ოფიციალურ გვერდზე!'
         : 'Welcome to Embrio Maternity & Reproductive Clinic!';
     }
+    
+    const isCar = q.includes('მანქან') || q.includes('manqan') || q.includes('ავტო') || q.includes('auto') || q.includes('car');
+    if (isCar) {
+      return lang === 'ka'
+        ? 'გადავდივართ AutoHub AI-ზე (ავტომობილების პლატფორმა)...'
+        : 'Redirecting to AutoHub AI...';
+    }
+
     if (q.includes('google')) {
       return lang === 'ka' ? 'გადამისამართება Google-ზე...' : 'Redirecting to Google...';
     }
@@ -650,6 +658,12 @@ export default function App() {
 
     setTimeout(() => {
       setIsTriggering(false);
+      const isCar = q.includes('მანქან') || q.includes('manqan') || q.includes('ავტო') || q.includes('auto') || q.includes('car');
+      if (isCar) {
+        window.location.href = 'https://gogmaisuradze.github.io/autohub-ai/?v=1';
+        return;
+      }
+
       if (isEmbrio) {
         setSiteUnlocked(true);
       } else if (q.includes('google')) {
@@ -1147,7 +1161,7 @@ export default function App() {
             <span style={{ fontSize: '15px' }}>→</span>
           </button>
           <span style={{ fontSize: '11px', color: 'rgba(255, 255, 255, 0.4)', letterSpacing: '0.04em' }}>
-            {lang === 'ka' ? 'ჩაწერეთ „ემბრიო“ ან „embrio“ გვერდზე გადასასვლელად' : 'Type "embrio" or "embryo" to enter clinic site'}
+            {lang === 'ka' ? 'ჩაწერეთ „ემბრიო“, „მანქანა“ ან ნებისმიერი საიტი' : 'Type "embrio", "car" or any site to navigate'}
           </span>
         </div>
       </div>
