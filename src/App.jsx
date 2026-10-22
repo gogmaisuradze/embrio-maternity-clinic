@@ -927,15 +927,50 @@ export default function App() {
 
   const daysList = getDaysInMonth()
 
-  // Form submit handler
+  // Form submit handler with automated chatbot clarification
   const handleBookingSubmit = (e) => {
     e.preventDefault()
-    if (!selectedDate || !selectedTime || !patientName || !patientPhone) {
+    if (!selectedDate || !selectedTime || !patientName.trim() || !patientPhone.trim()) {
       alert(lang === 'ka' ? 'გთხოვთ შეავსოთ ყველა აუცილებელი ველი და აირჩიოთ თარიღი/საათი!' : 'Please fill out all required fields and choose date/time!')
       return
     }
     
     setBookingSuccess(true)
+
+    const dateFormatted = `${selectedDate.getDate()} ${lang === 'ka' ? MONTHS[selectedDate.getMonth()] : MONTHS_EN[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`;
+    const doctorText = selectedDoctor || (lang === 'ka' ? 'კლინიკის მორიგე სპეციალისტი' : 'Clinic Duty Specialist');
+    const serviceText = selectedService;
+    const nameText = patientName.trim();
+    const phoneText = patientPhone.trim();
+    const timeText = selectedTime;
+
+    const summaryText = lang === 'ka'
+      ? `✦ ახალი ჯავშნის მოთხოვნა ✦\n\nგამარჯობა, ${nameText}!\nჩავიწერეთ თქვენი ვიზიტის მონაცემები:\n\n• 📅 თარიღი: ${dateFormatted}\n• ⏰ დრო: ${timeText}\n• 🩺 მიმართულება: ${serviceText}\n• 👩‍⚕️ ექიმი: ${doctorText}\n• 📞 ტელეფონი: ${phoneText}\n\nგთხოვთ დააზუსტოთ — მონაცემები სწორია? დაადასტურეთ ან მომწერეთ, თუ რაიმეს შეცვლა გსურთ.`
+      : `✦ New Appointment Request ✦\n\nHello, ${nameText}!\nWe have received your appointment details:\n\n• 📅 Date: ${dateFormatted}\n• ⏰ Time: ${timeText}\n• 🩺 Service: ${serviceText}\n• 👩‍⚕️ Doctor: ${doctorText}\n• 📞 Phone: ${phoneText}\n\nPlease confirm: Are these details correct? Confirm below or let me know if you would like to make changes.`;
+
+    const newBookingClarifyMsg = {
+      id: Date.now(),
+      sender: 'bot',
+      text: summaryText,
+      isBookingClarification: true,
+      bookingData: {
+        name: nameText,
+        phone: phoneText,
+        service: serviceText,
+        doctor: doctorText,
+        date: dateFormatted,
+        time: timeText
+      }
+    };
+
+    setMessages(prev => [...prev, newBookingClarifyMsg]);
+    setShowChat(true);
+    setChatUnread(0);
+    playClickSound();
+
+    // Background notify webhook
+    askEmbrioBot(`[ახალი ჯავშნის მოთხოვნა საიტიდან]\nპაციენტი: ${nameText}\nტელეფონი: ${phoneText}\nსერვისი: ${serviceText}\nექიმი: ${doctorText}\nთარიღი: ${dateFormatted} ${timeText}`);
+
     setTimeout(() => {
       setBookingSuccess(false)
       setSelectedDate(null)
@@ -945,6 +980,96 @@ export default function App() {
       setSelectedDoctor('')
     }, 4500)
   }
+
+  const handleConfirmBookingInChat = async (bookingData) => {
+    if (!bookingData) return;
+    playClickSound();
+    
+    const userConfirmText = lang === 'ka' 
+      ? `✓ დიახ, მონაცემები სწორია, ვადასტურებ ჩაწერას (${bookingData.date} · ${bookingData.time})!`
+      : `✓ Yes, details are correct, I confirm appointment (${bookingData.date} · ${bookingData.time})!`;
+
+    setMessages(prev => [...prev, { id: Date.now(), sender: 'user', text: userConfirmText }]);
+    setIsBotTyping(true);
+
+    try {
+      await askEmbrioBot(`[ჯავშნის დადასტურება]\nპაციენტი: ${bookingData.name} (${bookingData.phone})\nსერვისი: ${bookingData.service}\nექიმი: ${bookingData.doctor}\nთარიღი/დრო: ${bookingData.date} ${bookingData.time}\nსტატუსი: ოფიციალურად დადასტურებული`);
+    } catch (e) {}
+
+    setIsBotTyping(false);
+
+    const confirmationText = lang === 'ka'
+      ? `დიდი მადლობა, ${bookingData.name}! 🎉 თქვენი ჯავშანი ოფიციალურად დადასტურებულია.\n\nსამშობიარო კლინიკა „ემბრიოს“ ადმინისტრაცია მალე დაგიკავშირდებათ ნომერზე (${bookingData.phone}) საჭირო დეტალების შეხსენებისთვის.\n\nთუ დამატებითი კითხვა გაგიჩნდებათ, ნებისმიერ დროს მომწერეთ აქ ან დაგვირეკეთ: (032) 2 51 86 24. გისურვებთ ჯანმრთელობას! 🌸`
+      : `Thank you very much, ${bookingData.name}! 🎉 Your appointment is officially confirmed.\n\nEmbryo Maternity Clinic reception will contact you at ${bookingData.phone} with any preparation reminders.\n\nIf you have any questions, feel free to ask here anytime or call: (032) 2 51 86 24. Wishing you good health! 🌸`;
+
+    setMessages(prev => [
+      ...prev,
+      {
+        id: Date.now() + 1,
+        sender: 'bot',
+        text: confirmationText
+      }
+    ]);
+  };
+
+  const handleAskQuestionAboutBooking = (bookingData) => {
+    playClickSound();
+    const userMsg = lang === 'ka' 
+      ? 'მინდა ჯავშნის დეტალების შეცვლა ან კითხვა მაქვს.'
+      : 'I want to change appointment details or have a question.';
+    setMessages(prev => [...prev, { id: Date.now(), sender: 'user', text: userMsg }]);
+    
+    setTimeout(() => {
+      const botResponse = lang === 'ka'
+        ? `სიამოვნებით დაგეხმარებით! გთხოვთ მომწეროთ ქვემოთ ველში, რა დროის შეცვლა გსურთ ან რა შეკითხვა გაქვთ და რეგისტრატურას დაუყოვნებლივ გადავცემ.`
+        : `I would be happy to help! Please type your question or preferred time in the input below, and I will forward it to reception right away.`;
+      setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'bot', text: botResponse }]);
+    }, 300);
+  };
+
+  const handleClarifyWithBotNow = () => {
+    playClickSound();
+    const dateFormatted = selectedDate 
+      ? `${selectedDate.getDate()} ${lang === 'ka' ? MONTHS[selectedDate.getMonth()] : MONTHS_EN[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`
+      : (lang === 'ka' ? 'ჯერ არ არის არჩეული' : 'Not selected yet');
+    const doctorText = selectedDoctor || (lang === 'ka' ? 'კლინიკის მორიგე ექიმი' : 'Clinic Duty Doctor');
+    const serviceText = selectedService || (lang === 'ka' ? 'კონსულტაცია' : 'Consultation');
+    const timeText = selectedTime || (lang === 'ka' ? 'შეთანხმებით' : 'To be agreed');
+    const nameText = patientName.trim();
+    const phoneText = patientPhone.trim();
+
+    let clarifyPrompt = '';
+    if (nameText && phoneText && selectedDate && selectedTime) {
+      clarifyPrompt = lang === 'ka'
+        ? `✦ ჯავშნის დაზუსტება ✦\n\nგამარჯობა, ${nameText}!\nთქვენ ირჩევთ ვიზიტს:\n• 🩺 მიმართულება: ${serviceText}\n• 👩‍⚕️ ექიმი: ${doctorText}\n• 📅 თარიღი: ${dateFormatted}\n• ⏰ დრო: ${timeText}\n• 📞 ტელეფონი: ${phoneText}\n\nმონაცემები მზადაა დასადასტურებლად. გსურთ დადასტურება თუ რაიმეს შეცვლა გნებავთ?`
+        : `✦ Appointment Clarification ✦\n\nHello, ${nameText}!\nYou are selecting a visit:\n• 🩺 Service: ${serviceText}\n• 👩‍⚕️ Doctor: ${doctorText}\n• 📅 Date: ${dateFormatted}\n• ⏰ Time: ${timeText}\n• 📞 Phone: ${phoneText}\n\nAll details are ready. Would you like to confirm or make changes?`;
+    } else {
+      clarifyPrompt = lang === 'ka'
+        ? `✦ ვიზიტის დაგეგმვა და დაზუსტება ✦\n\nგამარჯობა! თქვენ მიერ შერჩეულია:\n• 🩺 მიმართულება: ${serviceText}\n• 👩‍⚕️ ექიმი: ${doctorText}\n• 📅 თარიღი: ${dateFormatted}\n• ⏰ დრო: ${timeText}\n\nგთხოვთ მომწეროთ თქვენი სახელი და ტელეფონის ნომერი (ან დასვათ შეკითხვა) და ჩაგწერთ ვიზიტზე!`
+        : `✦ Appointment Planning & Clarification ✦\n\nHello! You have selected:\n• 🩺 Service: ${serviceText}\n• 👩‍⚕️ Doctor: ${doctorText}\n• 📅 Date: ${dateFormatted}\n• ⏰ Time: ${timeText}\n\nPlease provide your name and phone number (or ask any question) and I will register your appointment!`;
+    }
+
+    setMessages(prev => [
+      ...prev,
+      {
+        id: Date.now(),
+        sender: 'bot',
+        text: clarifyPrompt,
+        isBookingClarification: Boolean(nameText && phoneText && selectedDate && selectedTime),
+        bookingData: {
+          name: nameText || (lang === 'ka' ? 'პაციენტი' : 'Patient'),
+          phone: phoneText,
+          service: serviceText,
+          doctor: doctorText,
+          date: dateFormatted,
+          time: timeText
+        }
+      }
+    ]);
+
+    setShowChat(true);
+    setChatUnread(0);
+  };
 
   // Auto-fill doctor and scroll to booking
   const handleSelectDoctorForBooking = (docName, specialty) => {
@@ -1847,6 +1972,28 @@ export default function App() {
                   </div>
                   <h4 className="font-serif font-bold text-sm mb-1">{lang === 'ka' ? 'ჯავშანი წარმატებით გაიგზავნა!' : 'Booking Request Sent!'}</h4>
                   <p className="text-xs">{lang === 'ka' ? 'კლინიკა „ემბრიოს“ რეგისტრატურა მალე დაგიკავშირდებათ.' : 'Embryo Clinic reception will contact you shortly.'}</p>
+                  <div style={{ marginTop: '12px' }}>
+                    <button
+                      type="button"
+                      onClick={() => { setShowChat(true); setChatUnread(0); playClickSound(); }}
+                      style={{
+                        background: 'rgba(30, 126, 117, 0.12)',
+                        border: '1px solid var(--accent-color)',
+                        color: 'var(--accent-color)',
+                        padding: '7px 16px',
+                        borderRadius: '20px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px'
+                      }}
+                    >
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      {lang === 'ka' ? 'ჯავშნის დაზუსტება ბოტთან →' : 'Clarify with Bot →'}
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleBookingSubmit}>
@@ -1901,6 +2048,30 @@ export default function App() {
 
                   <button className="btn btn-primary" type="submit">
                     {lang === 'ka' ? 'ვიზიტის დადასტურება' : 'Confirm Appointment'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleClarifyWithBotNow}
+                    style={{
+                      width: '100%',
+                      marginTop: '8px',
+                      background: 'rgba(30, 126, 117, 0.08)',
+                      border: '1px solid rgba(30, 126, 117, 0.25)',
+                      color: 'var(--accent-color)',
+                      fontSize: '0.8rem',
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px',
+                      padding: '9px 12px',
+                      borderRadius: '12px',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    {lang === 'ka' ? 'მონაცემების ბოტთან დაზუსტება' : 'Clarify Details with Bot'}
                   </button>
                 </form>
               )}
@@ -2133,6 +2304,53 @@ export default function App() {
                 <div key={m.id} className={`chat-msg-row ${m.sender === 'user' ? 'user' : 'bot'}`}>
                   <div className={`chat-msg ${m.sender === 'user' ? 'user' : 'bot'}`} style={{ whiteSpace: 'pre-wrap' }}>
                     {m.text}
+                    {m.isBookingClarification && m.bookingData && (
+                      <div className="booking-clarify-actions" style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '12px' }}>
+                        <button
+                          type="button"
+                          onClick={() => handleConfirmBookingInChat(m.bookingData)}
+                          style={{
+                            background: '#1E7E75',
+                            color: '#ffffff',
+                            border: 'none',
+                            borderRadius: '10px',
+                            padding: '8px 12px',
+                            fontSize: '11px',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '6px',
+                            boxShadow: '0 2px 6px rgba(30, 126, 117, 0.35)',
+                            transition: 'all 0.15s ease'
+                          }}
+                        >
+                          <Check className="w-3.5 h-3.5" />
+                          <span>{lang === 'ka' ? '✓ დიახ, ვადასტურებ ჯავშანს' : '✓ Yes, Confirm Booking'}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleAskQuestionAboutBooking(m.bookingData)}
+                          style={{
+                            background: 'rgba(0, 0, 0, 0.05)',
+                            color: 'inherit',
+                            border: '1px solid rgba(0, 0, 0, 0.12)',
+                            borderRadius: '10px',
+                            padding: '6px 12px',
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '6px'
+                          }}
+                        >
+                          <span>{lang === 'ka' ? '✎ დროის შეცვლა / შეკითხვა' : '✎ Change Time / Ask Question'}</span>
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
